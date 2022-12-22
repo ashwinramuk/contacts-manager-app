@@ -1,10 +1,18 @@
-import './App.css';
-import TotalContact from './Component/TotalContact';
+import React from 'react';
+import { BrowserRouter,Route, Routes } from 'react-router-dom';
+// import './App.css';
+
+import LoginPage from './Component/LogIn/loginpage';
 function App() {
+
   return (
-    <div className="App">
-      <TotalContact/>
-    </div>
+    <>
+        <BrowserRouter>
+          <Routes>
+            <Route path='/login' element={<LoginPage/>}/>
+          </Routes>
+        </BrowserRouter>
+    </>
   );
 }
 
