@@ -8,8 +8,7 @@ const TotalContact = ()=>{
         <>
         <SideBar/>
         <PageHead/>
-        <ContactsData/>
-        
+        <ContactsData/>         
         </>
     )
 }

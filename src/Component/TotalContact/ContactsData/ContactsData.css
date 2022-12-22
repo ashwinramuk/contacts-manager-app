@@ -1,10 +1,49 @@
 #contacts-data-container{
     position: absolute;
-width: 1449px;
-height: 898px;
-left: 255px;
-top: 124px;
+    width: 1449px;
+    height: 898px;
+    left: 255px;
+    top: 124px;
 
-background: #FBFBFB;
-border-radius: 15px;
+    background: #FBFBFB;
+    border-radius: 15px;
+}
+#button-d-f-container{
+
+}
+#s-date-button
+{
+    position: absolute;
+    width: 169px;
+    height: 40px;
+    left: 275px;
+    top: 147px;
+    
+    background: #FFFFFF;
+    box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+#filter-button{
+
+}
+#vartical-line{
+
+}
+
+
+
+
+#button-d-i-e-container{
+
+}
+
+#delete-button{
+
+}
+#import-button{
+
+}
+#export-button{
+
 }
