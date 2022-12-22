@@ -1,0 +1,81 @@
+#sidebar-container{
+    position: absolute;
+    width: 231px;
+    height: 1117px;
+    left: 0px;
+    top: 0px;
+    background: #CEF3FF;
+    border: 1px solid black;   
+}
+#logo-sidebar-container{
+    position: absolute;
+    width: 83px;
+    height: 61px;
+    left: 50px;
+    top: 13px;    
+    font-family: 'Titillium Web';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 40px;
+    line-height: 61px;
+    /* identical to box height */   
+    color: #0884FF;   
+}
+#img-logo-sidebar{
+    width: 100%;
+
+}
+#dashbord-text{
+    position: absolute;
+    width: 84px;
+    height: 27px;
+    left: 72px;
+    top: 141px;
+    font-family: 'Titillium Web';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 27px;
+    display: flex;
+    align-items: center;
+    color: #181818;
+}
+#total-contact-sidebar{
+    position: absolute;
+    width: 183px;
+    height: 65px;
+    left: 24px;
+    top: 203px;
+    background: #2DA5FC;
+    border-radius: 6px;
+}
+#logout-button{
+    position: absolute;
+    width: 57px;
+    height: 27px;
+    left: 67px;
+    top: 1047px;
+
+}
+/* #logout-icon{
+    position: absolute;
+    left: 12.5%;
+    right: 12.5%;
+    top: 12.5%;
+    bottom: 12.5%;
+    background: #000000;
+} */
+/* #logout-text{
+    position: absolute;
+    width: 57px;
+    height: 27px;
+    left: 67px;
+    top: 1047px;
+    font-family: 'Titillium Web';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 27px;
+    color: #000000;
+    opacity: 0.8;
+} */
