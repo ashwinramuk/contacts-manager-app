@@ -7,46 +7,34 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ImportExportIcon from '@mui/icons-material/ImportExport';
 import FileUploadOutlinedIcon from '@mui/icons-material/FileUploadOutlined';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
+import UnfoldMoreOutlinedIcon from '@mui/icons-material/UnfoldMoreOutlined';
+import Pagination from '@mui/material/Pagination'
 import './ContactsData.css'
+let pagesize = 5;
 const ContactsData = ()=>{
     const [contactsArr , setcontactsArr] = useState([]);
-    // axios.get('https://contact-manager-app-backend.onrender.com/api/users/get')
-    //   .then(function (response) {
-    //     // handle success
-    //     console.log(response);
-    //   })
-    //   .catch(function (error) {
-    //     // handle error
-    //     console.log(error);
-    //   })
-      //https://contact-manager-app-backend.onrender.com/api/contacts
-
-
-// GET all contacts list 
+    const [pagination , setpagination ]= useState ({
+        count: 0,
+        from :0 ,
+        from: pagesize
+    })
     useEffect(() => {
         const config = {
                     headers:{
-                        Authorization : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzE3NDM4MDgsImRhdGEiOiI2M2E0NjYzMDY0NGVlMjJjNGIyZDgwYjMiLCJpYXQiOjE2NzE3NDAyMDh9.gEUlX2BYn-Gsm4ymlSqgo_M29Uxog3tA1aF2Y60pRtQ"
+                        Authorization : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzE3OTY0NDcsImRhdGEiOiI2M2EzNTFhNmI2Y2I2Mjc4NmJkYzYyYWUiLCJpYXQiOjE2NzE3OTI4NDd9.N2qWtB1zsdSJkNZfMziDwidnIQBaCwxFo1zDPccpecs"
                     }
                   };
         axios.get("https://contact-manager-app-backend.onrender.com/api/contacts",config)
           .then(res => {
-            console.log(res.data.allcontact)
+            // console.log(res.data.allcontact)
             setcontactsArr(res.data.allcontact)
           })
           .catch(err => console.log(err));
       }, []);
 
-
     return (
         <div id='contacts-data-container'>
-        <nav>
-            {/* <select name='Select Date'>
-                <option value='Select Date'>  <CalendarMonthOutlinedIcon/> Select Date</option>
-            </select>
-            <select name='filters'>
-                <option value='filters'> <FilterListIcon/> filters</option>
-            </select> */}
+        <nav id="nav-abr-contact-page">
            <div id="button-d-f-container"> 
             <button id="s-date-button">
                 <CalendarMonthOutlinedIcon/>
@@ -69,21 +57,50 @@ const ContactsData = ()=>{
             <table>
                 <thead>
                 <tr>
-                    <th> <input type='checkbox'/> Name</th>
-                    <th>Designation</th>
-                    <th>Company</th>
-                    <th>Industry</th>
-                    <th>Email</th>
-                    <th>Phone number</th>
-                    <th>Country</th>
-                    <th>Action</th>
+                    <th id="name">
+                         <input type='checkbox'/> 
+                         Name
+                         <div className="end-varticalline"></div>
+                         </th>
+                    <th id="Designation">
+                        <button>Designation <UnfoldMoreOutlinedIcon/></button>
+                        <div className="end-varticalline"></div>
+                    </th>
+                    <th id="Company">
+                        <button>Company <UnfoldMoreOutlinedIcon/> </button>
+                        <div className="end-varticalline"></div>
+                     </th>
+                    <th id="Industry">
+                        <button>Industry <UnfoldMoreOutlinedIcon/> </button>
+                        <div className="end-varticalline"></div>
+                    </th>
+                    <th id="Email">
+                        Email
+                        <div className="end-varticalline"></div>
+                    </th>
+                    <th id="Phone">
+                        Phone number
+                        <div className="end-varticalline"></div>
+                    </th>
+                    <th id="Country">
+                        country
+                        <div className="end-varticalline"></div>
+                    </th>
+                    <th id="Action">Action</th>
                 </tr>
-                </thead>
-                    {/* <ContactCard/> */}
-            
-            </table>            
+                </thead>                   
+             </table>       
+             {contactsArr.map((obj,i)=>{
+            return  (
+                <>              
+                <ContactCard data={{obj,i}} id='dual-tone'/>                
+                </>
+            )
+        })}
+             {/* <ContactCard />
+             <ContactCard /> */}
         </div>
-        
+             <Pagination count={10} onClick={(e)=>{console.log(e.target.value,'pagination')}}/>        
         </div>
     )
 }
