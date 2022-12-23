@@ -1,19 +1,23 @@
-import React from 'react';
-import { BrowserRouter,Route, Routes } from 'react-router-dom';
-// import './App.css';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import React, { useState, createContext } from 'react'
+import LogIn from './Component/LogIn/Login';
+import SignUp from './Component/SignUp/signUp';
+import TotalContact from "./Component/TotalContact/TotalContact"
+export const contextProvider = createContext();
 
-import LoginPage from './Component/LogIn/loginpage';
-import TotalContact from './Component/TotalContact/TotalContact'
 function App() {
-
+  const [token, setToken] = useState(null);
   return (
     <>
+      <contextProvider.Provider value={[token, setToken]}>
         <BrowserRouter>
           <Routes>
-            <Route path='/login' element={<LoginPage/>}/>
-            <Route path='/contacts' element={<TotalContact/>}/>            
+            <Route path='/login' element={<LogIn />} />
+            <Route path='/register' element={<SignUp />} />
+            <Route path='/dashBoard' element={<TotalContact/>} />
           </Routes>
         </BrowserRouter>
+      </contextProvider.Provider>
     </>
   );
 }
