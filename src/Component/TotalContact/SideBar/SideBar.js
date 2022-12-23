@@ -1,31 +1,36 @@
 // import {useState , useEffect} from "react"
-import ContactsIcon from '@mui/icons-material/Contacts';
+import ContactsOutlinedIcon from '@mui/icons-material/ContactsOutlined';
 import LogoutIcon from '@mui/icons-material/Logout';
 import DashboardOutlinedIcon from '@mui/icons-material/DashboardOutlined';
+import green from "@material-ui/core/colors/green";
 import './SideBar.css'
 const SideBar = ()=>{
     return (
         <aside id="sidebar-container">
             <div id='logo-sidebar-container'>
                 Logo
-                {/* <img id='img-logo-sidebar' src ="" alt='logo'/> */}
             </div>
 
             <div id='dashbord-icon'>
-
-                <h3 id='dashbord-text'>
-                    <span><DashboardOutlinedIcon/></span>
-                    Dashbord
-                </h3>
+                <div id='dashbord-text'>
+                    <DashboardOutlinedIcon/>
+                    <p>Dashbord</p>
+                </div>
             </div>
+
             <div id='total-contact-sidebar'>
-                <ContactsIcon/><h3>Total Contact</h3>
+                <div id='total-contact-sidebar-child'>                    
+                        <ContactsOutlinedIcon 
+                        style={{ color: "white" }}
+                        />                    
+                    <p id='total-contas-text'>Total Contacts</p>
+                    <div id='total-contact-icon-line'></div>
+                </div>
             </div>
 
             <div id='logout-button'>
                 <button>
-                   <span id='logout-icon'><LogoutIcon/></span>
-                    Log out
+                   <LogoutIcon/> <span id='logout-text'> Log out </span>                   
                 </button>
             </div>
 
