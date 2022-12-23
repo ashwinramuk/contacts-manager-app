@@ -1,7 +1,7 @@
 // import {useState , useEffect} from "react"
 import ContactCard from './ContactCard/ContactCard';
 import './ContactsData.css'
-const ContactsData = ()=>{
+const ContactsData = (props)=>{
     return (
         <div id='contacts-data-container'>
         <nav>
@@ -13,8 +13,8 @@ const ContactsData = ()=>{
             </select>
             {/* <button>Select Date</button> */}
             {/* <button>filters </button> */}
-            <button>* Delete</button>
-            <button>* Import</button>
+            <button onClick={()=>{props.setTrigger((previous)=>({...previous,deletePopUp:true}))}}>* Delete</button>
+            <button onClick={()=>{props.setTrigger((previous)=>({...previous,importPopUp:true}))}}>* Import</button>
             <button>* Export</button>
         </nav>
         <div>
