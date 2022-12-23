@@ -18,7 +18,7 @@ const SignUp = () => {
         // console.log(userDetails)
         if (userDetails.email.indexOf("@") === -1) {
             // console.log(userDetails.email)
-             setError((oldData) => ({ ...oldData, emailError: "email should contain @ symbole" }))
+             setError((oldData) => ({ ...oldData, emailError: "please entre valid email id" }))
         } else {
              setError((oldData) => ({ ...oldData, emailError: "" }))
         }
