@@ -22,15 +22,15 @@
 .logo {
     position: absolute;
     width: 46px;
-    height: 9px;
+    height: 5px;
     left: 425px;
-    top: 50px;
-    font-family: 'Open Sans', sans-serif;
+    top: 20px;
+    /* font-family: 'Open Sans', sans-serif; */
     /* font-family: 'Open Sans'; */
     font-style: normal;
-    font-weight: 400;
+    font-weight: 100;
     font-weight: bold;
-    font-size: 40px;
+    font-size: 20px;
     line-height: 18px;
     /* identical to box height, or 45% */
 
@@ -46,7 +46,7 @@
     /* width: 350px; */
     height: 15px;
     left: 360px;
-    top: 120px;
+    top: 75px;
 
     /* font-family: 'Open Sans'; */
     font-style: normal;
@@ -72,7 +72,7 @@
     height: 27px;
     left: 320px;
     right: 320px;
-    top: 175px;
+    top: 120px;
 
     /* Colors/Neutral/White */
     padding: 10px;
@@ -88,7 +88,7 @@
     height: 27px;
     left: 320px;
     right: 320px;
-    top: 230px;
+    top: 170px;
 
     /* Colors/Neutral/White */
 
@@ -97,21 +97,28 @@
     border-radius: 5px;
     /* padding-left: 10px; */
     padding: 10px ;
+    /* position: relative; */
 }
 
 .signIn {
     position: absolute;
-    left: 320px;
+    left: 325px;
     right: 320px;
-    top: 70.71%;
-    bottom: 21.45%;
-
+    top: 220px;
+    /* bottom: 21.45%; */
+    height: 30px;
     /* Style */
     color: #FFFFFF;
     font-size: 15px;
     background: #7D8CC4;
     border-radius: 5px;
     border: none;
+
+}
+.signIn:hover{
+    background: linear-gradient(45deg,blue,rgb(68, 127, 210),blue);
+    transform: scale(1.1);
+    color:black;
 }
 
 .signUp {
@@ -119,9 +126,9 @@
     width: 100px;
     height: 25px;
     left: 440px;
-    top: 350px;
+    top: 270px;
     
-
+    padding-left: 20px;
     font-family: 'Open Sans';
     font-style: normal;
      font-weight: 1000; 
@@ -136,6 +143,11 @@
     background: #CEF3FF; 
     border: none;
 } 
+.signUp:hover{
+    background: linear-gradient(45deg,blue,rgb(68, 127, 210),blue);
+    transform: scale(1.1);
+    color:black;
+}
 
 .dotsRight {
     float: right;
@@ -173,8 +185,8 @@
     /* float: right; */
     /* right: 0px;
     bottom: 0px; */
-    top: 360px;
-    left: 1000px;
+    top: 400px;
+    left: 1040px;
 }
 
 .EllipseLeft {
@@ -193,7 +205,7 @@
     height: 27px;
     left: 320px;
     right: 320px;
-    top: 70.71%;
+    top: 55.71%;
     /* Style */
     padding: 10px;
     background: #FFFFFF;
@@ -201,7 +213,10 @@
     border-radius: 5px;
 }
 .errorMessage{
-    color: red;
+    color: rgb(19, 227, 123);
+    position: absolute;
+    top: 300px;
+    left: 320px;
 }
 .signUpPara{
     position: absolute;
@@ -223,4 +238,24 @@
     background: #7D8CC4;
     border-radius: 5px;
     padding-left: 130px;
+}
+#hide{
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    left: 590px;
+    top: 175px;
+}
+#hidez{
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    left: 592px;
+    top: 227px;
+    background: #FFFFFF;
+}
+.goto{
+    position: absolute;
+    top: 360px;
+    left: 320px;
 }

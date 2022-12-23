@@ -1,5 +1,6 @@
   // import {useState , useEffect} from "react"
 import './PageHead.css'
+import React from 'react'
 const PageHead = ()=>{
 console.log('from page head')
     return (

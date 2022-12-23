@@ -1,4 +1,5 @@
 // import {useState , useEffect} from "react"
+import React, { Component }  from 'react';
 import './ContactCard.css'
 import ModeEditOutlineOutlinedIcon from '@mui/icons-material/ModeEditOutlineOutlined';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';

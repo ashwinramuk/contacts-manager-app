@@ -1,4 +1,5 @@
 import {useState , useEffect} from "react"
+import React, { Component }  from 'react';
 import axios from 'axios';
 import ContactCard from './ContactCard/ContactCard';
 import FilterListIcon from '@mui/icons-material/FilterList';
