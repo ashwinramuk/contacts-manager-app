@@ -1,0 +1,224 @@
+.mainDiv {
+    background: #F5F5F5;
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+}
+
+.insideDiv {
+    /* border: #000000; */
+    position: absolute;
+    width: 950px;
+    height: 400px;
+    left: 150px;
+    top: 100px;
+
+    background: #CEF3FF;
+    opacity: 0.8;
+    box-shadow: 0px 4px 22px #B2DFFF;
+    border-radius: 20px;
+}
+
+.logo {
+    position: absolute;
+    width: 46px;
+    height: 9px;
+    left: 425px;
+    top: 50px;
+    font-family: 'Open Sans', sans-serif;
+    /* font-family: 'Open Sans'; */
+    font-style: normal;
+    font-weight: 400;
+    font-weight: bold;
+    font-size: 40px;
+    line-height: 18px;
+    /* identical to box height, or 45% */
+
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.25px;
+
+    color: #7D8CC4;
+}
+
+.para {
+    position: absolute;
+    /* width: 350px; */
+    height: 15px;
+    left: 250px;
+    top: 110px;
+
+    /* font-family: 'Open Sans'; */
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 22px;
+    /* identical to box height, or 147% */
+
+    display: flex;
+    align-items: center;
+    text-align: center;
+    letter-spacing: 0.25px;
+
+    color: #000000;
+
+    opacity: 1;
+}
+
+.userId {
+    box-sizing: border-box;
+    font-size: 15px;
+    position: absolute;
+    height: 27px;
+    left: 320px;
+    right: 320px;
+    top: 175px;
+
+    /* Colors/Neutral/White */
+    padding-left: 20px;
+    background: #FFFFFF;
+    border: 1px solid #E2E2E2;
+    border-radius: 5px;
+}
+
+.password {
+    box-sizing: border-box;
+    font-size: 15px;
+    position: absolute;
+    height: 27px;
+    left: 320px;
+    right: 320px;
+    top: 230px;
+
+    /* Colors/Neutral/White */
+
+    background: #FFFFFF;
+    border: 1px solid #E2E2E2;
+    border-radius: 5px;
+    padding-left: 20px;
+}
+
+.signIn {
+    position: absolute;
+    left: 36.98%;
+    right: 36.98%;
+    top: 70.71%;
+    bottom: 21.45%;
+
+    /* Style */
+    color: #FFFFFF;
+    font-size: 15px;
+    background: #7D8CC4;
+    border-radius: 5px;
+}
+
+.signUp {
+    position: absolute;
+    width: 100px;
+    height: 25px;
+    left: 440px;
+    top: 350px;
+    
+
+    font-family: 'Open Sans';
+    font-style: normal;
+     font-weight: 1000; 
+    font-size: 15px;
+    /* line-height: 18px; */
+    /* identical to box height, or 120% */
+     border-radius: 10px;
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.25px;
+    color: #7D8CC4;
+    background: #CEF3FF; 
+    border: none;
+} 
+
+.dotsRight {
+    float: right;
+    opacity: 1;
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    right: 25px;
+    top: 25px;
+    background: #CEF3FF;
+    border-radius: 10px;
+}
+
+.dotsLeft {
+    /* float: left; */
+    opacity: 1;
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    left: 25px;
+    bottom: 25px;
+    background: #CEF3FF;
+    border-radius: 10px;
+}
+
+.ellipse32 {
+    position: absolute;
+    width: 225px;
+    height: 200px;
+    /* left: 1827.89px;
+    top: 868.94px;
+
+    background: #B2DFFF;
+    transform: rotate(100.53deg);  */
+    /* float: right; */
+    /* right: 0px;
+    bottom: 0px; */
+    top: 360px;
+    left: 1000px;
+}
+
+.EllipseLeft {
+    position: absolute;
+    width: 250px;
+    height: 200px;
+}
+
+.confirmPassword {
+    position: absolute;
+    /* left: 36.98%; */
+    /* right: 36.98%; */
+    box-sizing: border-box;
+    font-size: 15px;
+    position: absolute;
+    height: 27px;
+    left: 320px;
+    right: 320px;
+    top: 70.71%;
+    /* Style */
+    padding-left: 20px;
+    background: #FFFFFF;
+    border: 1px solid #E2E2E2;
+    border-radius: 5px;
+}
+.errorMessage{
+    color: red;
+}
+.signUpPara{
+    position: absolute;
+    left:400px
+}
+.signUpRe{
+    position: absolute;
+    /* left: 36.98%; */
+    /* right: 36.98%; */
+    /* top: 70.71%; */
+    /* bottom: 21.45%; */
+
+    /* Style */
+    left: 320px;
+    width: 310px;
+    /* right: 200px; */
+    color: #FFFFFF;
+    font-size: 15px;
+    background: #7D8CC4;
+    border-radius: 5px;
+    padding-left: 130px;
+}
