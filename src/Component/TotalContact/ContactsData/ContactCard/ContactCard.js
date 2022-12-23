@@ -6,11 +6,11 @@ import Tooltip from '@mui/material/Tooltip';
 const ContactCard = (props)=>{
     // console.log(props.data.obj)
     let dualId = '';
-    if(props.data.i % 2 == 0){
+    if(props.data.i % 2 === 0){
         dualId = 'dual-tone'
     }
     const {name,designation,company,industry,email,phoneNumber, country} = props.data.obj
-    console.log(name)
+    // console.log(name)
     return (
         <tbody id={dualId}>   
         {/* <Tooltip title={{email}} arrow>    */}
