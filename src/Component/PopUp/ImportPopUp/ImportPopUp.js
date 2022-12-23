@@ -51,8 +51,8 @@ const ImportPopUp = (props) =>{
             handleDrop("https://contact-manager-app-backend.onrender.com/api/contacts", files)
         }}>
             <div className="popup-icon-cover">{response==null?<img src='./images/importFileIcon.png' alt='importFileIcon'/>:response.status=="Success"?<img src='./images/tickIcon.png' alt='tickIcon'/>:<img src='./images/crossIcon.png' alt='crossIcon'/>}</div>
-            <h2 className="popup-title">{response==null?"Import File":response.status=="Success"?"Import Complete":"Import Failed"}</h2>
-            {!loader?<p className="popup-msg">{response==null?"Drag & Drop a CSV File to Upload":response.status=="Success"?"CSV File is Uploaded":response.message=="jwt expired"?"Session Expired":response.message}</p>:<img className="loader-img" src="./images/Loading_icon.gif" alt="Loading_icon.gif"></img>}
+            {!loader?<><h2 className="popup-title">{response==null?"Import File":response.status=="Success"?"Import Complete":"Import Failed"}</h2>
+            <p className="popup-msg">{response==null?"Drag & Drop a CSV File to Upload":response.status=="Success"?"CSV File is Uploaded":response.message=="jwt expired"?"Session Expired":response.message}</p></>:<img className="loader-img" src="./images/Loading_icon.gif" alt="Loading_icon.gif"></img>}
             {/* {response==null?"":response.message=="jwt expired"?<p className="popup-msg">Please <Link to="/login">Login</Link> again</p>:""} */}
 
             {response==null?<button className="popup-cancel-btn" onClick={closePopUp}>Cancel</button>:response.status=="Success"?<button className="popup-cancel-btn" onClick={closePopUp}>Close</button>:response.message="jwt expired"?<button className="popup-cancel-btn" onClick={closePopUp}><Link to="/login">Login</Link></button>:""}
