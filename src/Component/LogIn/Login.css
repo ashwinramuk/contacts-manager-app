@@ -45,13 +45,13 @@
     position: absolute;
     /* width: 350px; */
     height: 15px;
-    left: 250px;
-    top: 110px;
+    left: 360px;
+    top: 120px;
 
     /* font-family: 'Open Sans'; */
     font-style: normal;
     font-weight: 400;
-    font-size: 20px;
+    font-size: 10px;
     line-height: 22px;
     /* identical to box height, or 147% */
 
@@ -75,7 +75,7 @@
     top: 175px;
 
     /* Colors/Neutral/White */
-    padding-left: 20px;
+    padding: 10px;
     background: #FFFFFF;
     border: 1px solid #E2E2E2;
     border-radius: 5px;
@@ -95,13 +95,14 @@
     background: #FFFFFF;
     border: 1px solid #E2E2E2;
     border-radius: 5px;
-    padding-left: 20px;
+    /* padding-left: 10px; */
+    padding: 10px ;
 }
 
 .signIn {
     position: absolute;
-    left: 36.98%;
-    right: 36.98%;
+    left: 320px;
+    right: 320px;
     top: 70.71%;
     bottom: 21.45%;
 
@@ -110,6 +111,7 @@
     font-size: 15px;
     background: #7D8CC4;
     border-radius: 5px;
+    border: none;
 }
 
 .signUp {
@@ -144,7 +146,7 @@
     right: 25px;
     top: 25px;
     background: #CEF3FF;
-    border-radius: 10px;
+    /* border-radius: 10px; */
 }
 
 .dotsLeft {
@@ -156,7 +158,7 @@
     left: 25px;
     bottom: 25px;
     background: #CEF3FF;
-    border-radius: 10px;
+    /* border-radius: 10px; */
 }
 
 .ellipse32 {
@@ -193,7 +195,7 @@
     right: 320px;
     top: 70.71%;
     /* Style */
-    padding-left: 20px;
+    padding: 10px;
     background: #FFFFFF;
     border: 1px solid #E2E2E2;
     border-radius: 5px;
@@ -203,7 +205,7 @@
 }
 .signUpPara{
     position: absolute;
-    left:400px
+    left:420px
 }
 .signUpRe{
     position: absolute;

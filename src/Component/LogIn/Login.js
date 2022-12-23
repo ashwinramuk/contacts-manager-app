@@ -22,7 +22,7 @@ const LogIn = () => {
         // email varification
         if (userDetails.email.indexOf("@") === -1) {
             console.log(userDetails.email)
-             setError((oldData) => ({ ...oldData, emailError: "email should contain @ symbole" }))
+             setError((oldData) => ({ ...oldData, emailError: "please enter proper email" }))
         } else {
              setError((oldData) => ({ ...oldData, emailError: "" }))
         }
@@ -33,7 +33,8 @@ const LogIn = () => {
         } else {
             setError((oldData) => ({ ...oldData, passwordError: "" }))
         }             
-        console.log(error)
+        // console.log(error)
+
         fetch("http://localhost:4000/api/users/login",{
             method:"POST",
             body:JSON.stringify(userDetails),
@@ -47,25 +48,21 @@ const LogIn = () => {
             console.log(data)
             console.log(data.token)
             setToken(data.token)
-            if(!token){
-                alert(data.message)
-            }
             if(token){
+                alert(data.message)
                 navigate('/dashBoard')
+                document.location.reload()
             }
+            // if(token){
+            //     navigate('/dashBoard')
+            // }
 
         }).catch((err)=>{
             console.log(err)
         })
-
-        // if(token){
-        //     navigate('/dashBoard')
-        // }
-
+        // document.location.reload()
     }
 
-
-  
     return (
         <>
             <div className="mainDiv">
