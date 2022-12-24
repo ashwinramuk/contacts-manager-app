@@ -41,7 +41,7 @@ const LogIn = () => {
         }             
         // console.log(error)
 
-        fetch("http://localhost:4000/api/users/login",{
+        fetch("https://contact-manager-app-backend.onrender.com/api/users/login",{
             method:"POST",
             body:JSON.stringify(userDetails),
             headers: {

@@ -59,9 +59,6 @@ const SignUp = () => {
         }).catch((err)=>{
             console.log(err)
         })
-        // if(data.status == "Success"){
-        //     navigate('/dashBoard')
-        // }
     }
   
     return (
