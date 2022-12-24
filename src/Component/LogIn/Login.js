@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import "./Login.css"
 import React from "react";
-import {useState,useContext} from 'react'
+import {useState,useContext, useEffect} from 'react'
 import { contextProvider } from "../../../src/App"
 import { useNavigate } from "react-router-dom"
 // import eye from "../"
@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom"
 
 const LogIn = () => {
     const [token,setToken] = useContext(contextProvider)
+    const [loader, setLoader] = useState(false)
     let [isRevealed,setIsReaveled] = useState(false)
     let [userNotReg,setUserNotReg] = useState({
         wrongPassword:"",
@@ -22,7 +23,7 @@ const LogIn = () => {
     })
 
     const navigate = useNavigate()
-    const submitHandler = async (e) =>{
+    const submitHandler = (e) =>{
         e.preventDefault();
 
         // email varification
@@ -41,7 +42,8 @@ const LogIn = () => {
         }             
         // console.log(error)
 
-        fetch("http://localhost:4000/api/users/login",{
+        setLoader(true)
+        fetch("https://contact-manager-app-backend.onrender.com/api/users/login",{
             method:"POST",
             body:JSON.stringify(userDetails),
             headers: {
@@ -54,12 +56,6 @@ const LogIn = () => {
             console.log(data)
             // console.log(data.token)
             setToken(data.token)
-
-            if(token){
-                // alert(data.message)
-                navigate('/dashBoard')
-                document.location.reload()
-            }
             if(data.status =="Password not matched"){
                 // <h1>{data.message}</h1>
                 console.log("from  Password not matched")
@@ -79,10 +75,16 @@ const LogIn = () => {
 
         }).catch((err)=>{
             console.log(err)
+        }).finally(()=>{setLoader(false)})
         })
      
         // document.location.reload()
     }
+    useEffect(()=>{
+        localStorage.setItem("token",token)
+        console.log("login", localStorage.getItem("token"))
+        if(token)navigate("/dashBoard")
+    },[token])
     console.log(userNotReg)
 
     return (
@@ -100,6 +102,7 @@ const LogIn = () => {
                         <img id="hide" src="../images/eye.png" alt="eyecon" onClick={()=> setIsReaveled(prevState => !prevState)} />
                         {/* <button className="signIn">Sign In</button> */}
                         <input type="submit" className="signIn" value="Sign In" /><br />
+                        {loader&&<div className="loader-div"><img src="./images/Loading_icon.gif" alt="Loading_icon"/></div>}
                     </form>
                         <Link to="/register"><button className="signUp">Sign Up</button></Link>
                     <center className="errorMessage">
