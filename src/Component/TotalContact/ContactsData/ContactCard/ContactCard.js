@@ -29,15 +29,14 @@ const ContactCard = (props)=>{
         }    
     }
     console.log("selectContacts",selectContacts)
-    useEffect(()=>{
-        setChecked(false)
-    },[])
-
+    // useEffect(()=>{
+    //     setChecked(false)
+    // },[])
     return (
         <tbody id={dualId}>   
         {/* <Tooltip title={{email}} arrow>    */}
             <tr >
-                <td id='namefild'> <input type='checkbox' onChange={handleSelect} checked={checked} defaultChecked={false} />{name}</td>
+                <td id='namefild'> <input type='checkbox' onClick={handleSelect} defaultChecked={checked} />{name}</td>
                 <td id='desiggnationfild'>{designation}</td>
                 <td id='companyfild'>{company}</td>
                 <td id='industryfild'>{industry}</td>

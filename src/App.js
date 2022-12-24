@@ -4,6 +4,7 @@ import LogIn from './Component/LogIn/Login';
 import SignUp from './Component/SignUp/signUp';
 import TotalContact from "./Component/TotalContact/TotalContact"
 import './App.css';
+import ProtectedRoute from './Routes/ProtectedRoutes/ProtectedRoutes';
 export const contextProvider = createContext();
 export const selectContactsContext = createContext()
 
@@ -19,8 +20,12 @@ function App() {
             <Route path='/' element={<LogIn/>}/>
             <Route path='/login' element={<LogIn />} />
             <Route path='/register' element={<SignUp />} />
-            
-            <Route path='/dashBoard' element={<TotalContact/>} />
+            <Route path='/dashBoard' 
+            element={
+            <ProtectedRoute>
+              <TotalContact/>
+              </ProtectedRoute>
+            }/>          
             
           </Routes>
         </BrowserRouter>
