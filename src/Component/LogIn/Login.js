@@ -76,7 +76,6 @@ const LogIn = () => {
         }).catch((err)=>{
             console.log(err)
         }).finally(()=>{setLoader(false)})
-        })
      
         // document.location.reload()
     }
