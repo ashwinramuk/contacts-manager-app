@@ -1,7 +1,7 @@
 .mainDiv {
     background: #F5F5F5;
     position: relative;
-    width: 100vw;
+    width: 100vh;
     height: 100vh;
 }
 
@@ -239,7 +239,10 @@
     border-radius: 5px;
     padding-left: 130px;
 }
-#hide{
+.loader-div{
+    display:block;
+    width:50%
+}#hide{
     position: absolute;
     height: 20px;
     width: 20px;
@@ -254,6 +257,7 @@
     top: 227px;
     background: #FFFFFF;
     
+
 }
 .goto{
     position: absolute;
