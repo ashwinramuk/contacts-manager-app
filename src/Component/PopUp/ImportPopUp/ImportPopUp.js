@@ -18,19 +18,26 @@ const ImportPopUp = (props) =>{
                 headers: {Authorization: localStorage.getItem('token')},
                 body: formData
             }).then((res)=>res.json())
-            .then((data)=>{console.log(data);setResponse(data)})
-            .catch((e)=>{console.log("fetch call error",e)})
-            .finally(()=>{})
-            fetch(url,{
-                method: 'GET',
-                headers: {Authorization: localStorage.getItem("token")},
-            }).then((res)=>res.json())
-            .then((data)=>{console.log(data);setContactsArr(data.allcontact)}) //contactsdataArr
+            .then((data)=>{
+                console.log(data);
+                setResponse(data);
+                if(data.status=="Success"){
+                    fetch(url,{
+                        method: 'GET',
+                        headers: {Authorization: localStorage.getItem("token")},
+                    }).then((res)=>res.json())
+                    .then((data)=>{console.log(data);setContactsArr(data.allcontact)}) //contactsdataArr
+                    .catch((e)=>{console.log("fetch call error",e)})
+                    .finally(()=>{})
+                }
+            })
             .catch((e)=>{console.log("fetch call error",e)})
             .finally(()=>{setLoader(false)})
+            
         
     }
     function closePopUp(){
+        
         props.setTrigger((previous)=>{return ({...previous,importPopUp:false})})
         
     }

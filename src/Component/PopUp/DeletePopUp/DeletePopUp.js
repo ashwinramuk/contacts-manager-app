@@ -18,25 +18,24 @@ const DeletePopUp = (props) =>{
                 headers: {Authorization: localStorage.getItem('token'),'Content-type': 'application/json'},
                 body: JSON.stringify({selectedContactsIds:selectContacts})
             }).then((res)=>res.json())
-            .then((data)=>{console.log(data);setResponse(data)})
+            .then((data)=>{
+                console.log(data);
+                setResponse(data)
+                if(data.status=="Success"){
+                    fetch(url,{
+                        method: 'GET',
+                        headers: {Authorization: localStorage.getItem("token")},
+                    }).then((res)=>res.json())
+                    .then((data)=>{console.log(data);setContactsArr(data.allcontact)}) 
+                    .catch((e)=>{console.log("fetch call error",e)})
+                    .finally(()=>{})
+                }
+            })
             .catch((e)=>{console.log("fetch call error",e)})
             .finally(()=>{setLoader(false);setSelectContacts([])})
-            // fetch(url,{
-            //     method: 'GET',
-            //     headers: {Authorization: localStorage.getItem("token")},
-            // }).then((res)=>res.json())
-            // .then((data)=>{console.log(data);setContactsArr(data.allcontact)}) //contactsdataArr
-            // .catch((e)=>{console.log("fetch call error",e)})
-            // .finally(()=>{setLoader(false)})
+            
     }
     function closePopUp(){
-        fetch(url,{
-            method: 'GET',
-            headers: {Authorization: localStorage.getItem("token")},
-        }).then((res)=>res.json())
-        .then((data)=>{console.log(data);setContactsArr(data.allcontact)}) //contactsdataArr
-        .catch((e)=>{console.log("fetch call error",e)})
-        .finally(()=>{setLoader(false)})
         props.setTrigger((previous)=>{return ({...previous,deletePopUp:false})})
     }
     

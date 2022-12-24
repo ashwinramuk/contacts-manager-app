@@ -16,6 +16,7 @@ import { selectContactsContext } from "../../../App";
 
 import './ContactsData.css'
 const ContactsData = ({searchData, setTrigger})=>{
+    const [loader,setLoader] = useState(false)
     const [contactsArr , setContactsArr] = useContext(contextProvider);
     const [currentpage, setcurrentpage]= useState(1);
     const [postsPerPage] = useState(11);
@@ -26,13 +27,23 @@ const ContactsData = ({searchData, setTrigger})=>{
                         Authorization : localStorage.getItem("token"),
                     }
                   };
-        
+        setLoader(true)
         axios.get("https://contact-manager-app-backend.onrender.com/api/contacts",config)
           .then(res => {
-            // console.log(res.data.allcontact)
-            setContactsArr(res.data.allcontact)
+            console.log(res.data)
+            if(res.data.status=="Success"){
+                setContactsArr(res.data.allcontact)
+            }else{
+                console.log("get fetch error message",res.data.message)
+            }
           })
-          .catch(err => console.log(err));
+          .catch(err => {
+            if(err){
+                console.log(err)
+
+            }
+
+        }).finally(()=>{setLoader(false)})
       }, [postsPerPage]);
 
 // useeffect for serchcontacts
@@ -133,7 +144,8 @@ const ContactsData = ({searchData, setTrigger})=>{
                     <th id="Action">Action</th>
                 </tr>
                 </thead>                   
-             </table>       
+             </table>
+             {loader&&<div className="loader-div"><img src="./images/Loading_icon.gif"/></div>}       
              {currentPost.map((obj,i)=>{
             return  (
                 <>              
