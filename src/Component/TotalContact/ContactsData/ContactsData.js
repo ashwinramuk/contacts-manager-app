@@ -10,27 +10,27 @@ import FileUploadOutlinedIcon from '@mui/icons-material/FileUploadOutlined';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 import UnfoldMoreOutlinedIcon from '@mui/icons-material/UnfoldMoreOutlined';
 import Pagination from '@mui/material/Pagination'
-import './ContactsData.css'
+import {useContext} from 'react'
+import { contextProvider } from "../../../App";
+import { selectContactsContext } from "../../../App";
 
-const ContactsData = ({searchData})=>{
-    const [contactsArr , setcontactsArr] = useState([]); //
+import './ContactsData.css'
+const ContactsData = ({searchData, setTrigger})=>{
+    const [contactsArr , setContactsArr] = useContext(contextProvider);
     const [currentpage, setcurrentpage]= useState(1);
     const [postsPerPage] = useState(11);
     const [searchContactArr, setSearchContactArr] = useState([])
-
-    // use state for innisialy render the data in the page //When 1st render 
     useEffect(() => {
         const config = {
                     headers:{
-                        Authorization : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzE4MzkwODIsImRhdGEiOiI2M2EzNTFhNmI2Y2I2Mjc4NmJkYzYyYWUiLCJpYXQiOjE2NzE4MzU0ODJ9.pNMZhF0Yj3nfNemAlxAWltPaP3klrcKVHV9SCLCbQa0"
+                        Authorization : localStorage.getItem("token"),
                     }
                   };
         
         axios.get("https://contact-manager-app-backend.onrender.com/api/contacts",config)
           .then(res => {
             // console.log(res.data.allcontact)
-            setcontactsArr(res.data.allcontact)
-          
+            setContactsArr(res.data.allcontact)
           })
           .catch(err => console.log(err));
       }, [postsPerPage]);
@@ -39,7 +39,7 @@ const ContactsData = ({searchData})=>{
     useEffect(() => {
         const config = {
                     headers:{
-                        Authorization : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzE4MzkwODIsImRhdGEiOiI2M2EzNTFhNmI2Y2I2Mjc4NmJkYzYyYWUiLCJpYXQiOjE2NzE4MzU0ODJ9.pNMZhF0Yj3nfNemAlxAWltPaP3klrcKVHV9SCLCbQa0"
+                        Authorization : localStorage.getItem("token")
                     }
                 };
         
@@ -92,8 +92,8 @@ const ContactsData = ({searchData})=>{
                 <ExpandMoreIcon/>
                 </button></div>
             <div id="button-d-i-e-container">
-                <button id="delete-button"><DeleteOutlineOutlinedIcon/>Delete</button>
-                <button id="import-button"><ImportExportIcon/>Import</button>
+                <button onClick={()=>{setTrigger((previous)=>({...previous,deletePopUp:true}))}} id="delete-button"><DeleteOutlineOutlinedIcon/>Delete</button>
+                <button onClick={()=>{setTrigger((previous)=>({...previous,importPopUp:true}))}} id="import-button"><ImportExportIcon/>Import</button>
                 <button id="export-button"><FileUploadOutlinedIcon/> Export</button>
             </div>
         </nav>
@@ -102,7 +102,7 @@ const ContactsData = ({searchData})=>{
                 <thead>
                 <tr>
                     <th id="name">
-                         <input type='checkbox'/> 
+                         <input type='checkbox' /> 
                          Name
                          <div className="end-varticalline"></div>
                          </th>

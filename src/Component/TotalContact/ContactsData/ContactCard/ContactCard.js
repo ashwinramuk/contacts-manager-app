@@ -4,19 +4,38 @@ import './ContactCard.css'
 import ModeEditOutlineOutlinedIcon from '@mui/icons-material/ModeEditOutlineOutlined';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 import Tooltip from '@mui/material/Tooltip';
+import {useContext} from 'react'
+import { contextProvider } from "../../../../App";
+import { selectContactsContext } from '../../../../App';
 const ContactCard = (props)=>{
     // console.log(props.data.obj)
     let dualId = '';
     if(props.data.i % 2 === 0){
         dualId = 'dual-tone'
     }
-    const {name,designation,company,industry,email,phoneNumber, country} = props.data.obj
-    // console.log(name)
+    const [checked, setChecked] = useState(false)
+    const [contactsArr, setContactsArr] = useContext(contextProvider)
+    const [selectContacts,setSelectContacts] = useContext(selectContactsContext)
+    const {_id, name,designation,company,industry,email,phoneNumber, country} = props.data.obj
+    // console.log(name,_id)
+    const handleSelect=(event)=>{
+        setChecked(prev=>!prev) 
+        if(!checked){
+            setSelectContacts((prev)=>{console.log(prev);return [...prev,_id]})
+        }else{
+            setSelectContacts((prev)=>{console.log(prev);return prev.filter((e)=>e!==_id)})
+        }    
+    }
+    console.log("selectContacts",selectContacts)
+    useEffect(()=>{
+        setChecked(false)
+    },[])
+
     return (
         <tbody id={dualId}>   
         {/* <Tooltip title={{email}} arrow>    */}
             <tr >
-                <td id='namefild'> <input type='checkbox'/>{name}</td>
+                <td id='namefild'> <input type='checkbox' onChange={handleSelect} checked={checked} defaultChecked={false} />{name}</td>
                 <td id='desiggnationfild'>{designation}</td>
                 <td id='companyfild'>{company}</td>
                 <td id='industryfild'>{industry}</td>

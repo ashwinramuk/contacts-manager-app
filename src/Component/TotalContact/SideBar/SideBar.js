@@ -5,19 +5,9 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import DashboardOutlinedIcon from '@mui/icons-material/DashboardOutlined';
 // import green from "@material-ui/core/colors/green";
 import './SideBar.css'
-// import { useNavigate } from "react-router-dom"
-// import {useState,useContext} from 'react'
-// import { contextProvider } from '../../../App';
+import { Navigate, useNavigate } from 'react-router-dom';
 const SideBar = ()=>{
-    // const [token,setToken] = useContext(contextProvider)
-    // console.log(token)
-    // const navigate = useNavigate()
-    // const logOutHandler=()=>{
-    //     // console.log(token)
-    //     setToken(null)
-    //     navigate("/login")
-    //     document.location.reload()
-    // }
+    const navigate = useNavigate();
     return (
         <aside id="sidebar-container">
             <div id='logo-sidebar-container'>
@@ -42,7 +32,7 @@ const SideBar = ()=>{
             </div>
 
             <div id='logout-button'>
-                <button>
+                <button onClick={()=>{localStorage.setItem("token",null);navigate("/")}}>
                    <LogoutIcon/> <span id='logout-text'> Log out </span>                   
                 </button>
             </div>
