@@ -20,13 +20,9 @@ function App() {
             <Route path='/' element={<LogIn/>}/>
             <Route path='/login' element={<LogIn />} />
             <Route path='/register' element={<SignUp />} />
-            <Route path='/dashBoard' 
-            element={
-            <ProtectedRoute>
-              <TotalContact/>
-              </ProtectedRoute>
-            }/>          
-            
+            <Route element={<ProtectedRoute/>}>
+              <Route path='/dashBoard' element={<TotalContact/>}/>          
+            </Route>
           </Routes>
         </BrowserRouter>
         </selectContactsContext.Provider>
