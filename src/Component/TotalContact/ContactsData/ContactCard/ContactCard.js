@@ -1,13 +1,7 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-// import {useState , useEffect} from "react"
+
 import React, { Component }  from 'react';
-=======
+
 import {useState , useEffect} from "react"
->>>>>>> f062b31c877abe146a5dcd304a7fa6ae103098fa
-=======
-import {useState , useEffect} from "react"
->>>>>>> f062b31c877abe146a5dcd304a7fa6ae103098fa
 import './ContactCard.css'
 import ModeEditOutlineOutlinedIcon from '@mui/icons-material/ModeEditOutlineOutlined';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';

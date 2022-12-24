@@ -1,12 +1,7 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-// import {useState , useEffect} from "react"
 import React from "react";
-=======
->>>>>>> f062b31c877abe146a5dcd304a7fa6ae103098fa
-=======
->>>>>>> f062b31c877abe146a5dcd304a7fa6ae103098fa
 import {useState , useEffect} from "react"
+
+// import {useState , useEffect} from "react"
 import SideBar from "./SideBar/SideBar";
 import PageHead from "./PageHead/PageHead";
 import ContactsData from "./ContactsData/ContactsData";
