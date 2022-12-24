@@ -23,23 +23,59 @@
     color: #454545;
     opacity: 0.8;
 }
-#inputbar{
+#searchbar-button-container{
     position: absolute;
-    width: 272px;
-    height: 29px;
+    /* border: 1px solid black; */
+    width: 335px;
+    height: 38px;
     left: 510px;
     top: 35px;
+    border-radius: 9px;
     background: #F2F2F2;
+}
+#searchbar-button-container > button{
+    background-color: #ffffff;
+    border: #ffffff;
+    background-color: #ffffff;
+    border: #ffffff;
+    position: relative;
+    top: 6px;
+    left: 10px;   
+    background: #F2F2F2;
+    cursor: pointer; 
+}
+#inputbar{
+    /* position: absolute; */
+    width: 272px;
+    height: 29px;
+    border: #FFFFFF;
+    padding-left: 15px;
+    /* background: #F2F2F2; */
     border-radius: 6px;
     font-size: 13px;
-    background-image: url(https://cdn2.hubspot.net/hubfs/4004166/bioticresearch_website_assets/images/search_icon.png);
+    background: #F2F2F2;
+    /* background-image: url(https://cdn2.hubspot.net/hubfs/4004166/bioticresearch_website_assets/images/search_icon.png); */
     /* background-image: url(../magnifiglass.png); */
-    background-repeat: no-repeat;
-    background-position: left center;
-    padding-left: 65px;
-    box-shadow: none;
-    -webkit-appearance: none;
-    border: 0.5px solid #FFFFFF;
+    /* background-repeat: no-repeat;
+    background-position: left center; */
+   
+    /* box-shadow: none; */
+    /* -webkit-appearance: none; */
+    /* border: 0.5px solid #FFFFFF; */
+}
+#inputbar:focus{
+ outline: none;
+}
+.dropdown{
+    position: relative;
+    width: 333px;
+    background-color: #EAEAEA;
+    /* border: 1px solid; */
+    border-radius: 6px;
+    top: 67px;
+    left: 510px;
+    z-index: 100;
+    display: inline-block;
 }
 #user-imfo{
     position: absolute;
