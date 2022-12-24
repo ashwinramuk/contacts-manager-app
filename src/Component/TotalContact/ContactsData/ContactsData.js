@@ -1,4 +1,5 @@
 import {useState , useEffect} from "react"                                          // HAVE TO ADD ATHE TOKEN  IN 2 Use effects 
+import React, { Component }  from 'react';
 import axios from 'axios';
 import ContactCard from './ContactCard/ContactCard';
 import FilterListIcon from '@mui/icons-material/FilterList';
