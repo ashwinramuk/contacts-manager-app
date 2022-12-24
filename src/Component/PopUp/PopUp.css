@@ -66,7 +66,11 @@
 .popup-ok-btn{
     font-size:1.5em;
     line-height: 2.2em;
-    color:#1F2633
+    color:#1F2633;
+    background: none;
+    border:none;
+    margin-top:43px;
+
 }
 .popup-icon-cover{
     width: 45px;
@@ -85,4 +89,13 @@
     width:50%;
     display:block;
     margin:30px auto;
+}
+.link{
+    text-decoration: none;
+    color: #FFFFFF;
+}
+.delete-popup-btns{
+    display: flex;
+    align-items: center;
+
 }
