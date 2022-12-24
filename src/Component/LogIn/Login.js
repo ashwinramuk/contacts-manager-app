@@ -9,7 +9,6 @@ import { useNavigate } from "react-router-dom"
 
 
 const LogIn = () => {
-    const [token,setToken] = useState(null)
     const [loader, setLoader] = useState(false)
     let [isRevealed,setIsReaveled] = useState(false)
     let [userNotReg,setUserNotReg] = useState({
@@ -53,9 +52,7 @@ const LogIn = () => {
         }).then((res)=>{
             return res.json()
         }).then((data)=>{
-            console.log(data)
-            console.log(data.token)
-            setToken(data.token)
+                       
             if(data.status =="Password not matched"){
                 // <h1>{data.message}</h1>
                 console.log("from  Password not matched")
@@ -68,6 +65,8 @@ const LogIn = () => {
                 setUserNotReg((prevData)=>({...prevData,newUser:data.message}))
             }else{
                 setUserNotReg((prevData)=>({...prevData,newUser:""}))
+                localStorage.setItem("token",data.token)
+                navigate("/dashBoard")
             }
             // if(token){
             //     navigate('/dashBoard')
@@ -77,15 +76,6 @@ const LogIn = () => {
         }).finally(()=>{setLoader(false)
         })
         }
-     
-        // document.location.reload()
-    useEffect(()=>{
-        console.log("inside login useeffect")
-        localStorage.setItem("token",token)
-        console.log("login", localStorage.getItem("token"))
-        if(token){console.log("inside login useeffect");navigate("/dashBoard")}
-    },[token])
-    console.log(userNotReg)
 
     return (
         <>
