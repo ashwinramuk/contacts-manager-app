@@ -10,7 +10,7 @@ const TotalContact = ()=>{
         <>
         <SideBar/>
         <PageHead/>
-        <ContactsData trigger={popUp} setTrigger={setPopUp}/>
+        <ContactsData trigger={popUp} setTrigger={setPopUp} />
         <PopUp trigger={popUp} setTrigger={setPopUp}/>
         </>
     )

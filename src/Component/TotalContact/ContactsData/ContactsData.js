@@ -9,25 +9,30 @@ import FileUploadOutlinedIcon from '@mui/icons-material/FileUploadOutlined';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 import UnfoldMoreOutlinedIcon from '@mui/icons-material/UnfoldMoreOutlined';
 import Pagination from '@mui/material/Pagination'
+import {useContext} from 'react'
+import { contextProvider } from "../../../App";
+import { selectContactsContext } from "../../../App";
+
 import './ContactsData.css'
 let pagesize = 5;
 const ContactsData = (props)=>{
-    const [contactsArr , setcontactsArr] = useState([]);
+    const [contactsArr , setContactsArr] = useContext(contextProvider);
     const [pagination , setpagination ]= useState ({
         count: 0,
         from :0 ,
         from: pagesize
     })
+
     useEffect(() => {
         const config = {
                     headers:{
-                        Authorization : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzE3OTY0NDcsImRhdGEiOiI2M2EzNTFhNmI2Y2I2Mjc4NmJkYzYyYWUiLCJpYXQiOjE2NzE3OTI4NDd9.N2qWtB1zsdSJkNZfMziDwidnIQBaCwxFo1zDPccpecs"
+                        Authorization : localStorage.getItem("token"),
                     }
                   };
         axios.get("https://contact-manager-app-backend.onrender.com/api/contacts",config)
           .then(res => {
             // console.log(res.data.allcontact)
-            setcontactsArr(res.data.allcontact)
+            setContactsArr(res.data.allcontact)
           })
           .catch(err => console.log(err));
       }, []);
@@ -58,7 +63,7 @@ const ContactsData = (props)=>{
                 <thead>
                 <tr>
                     <th id="name">
-                         <input type='checkbox'/> 
+                         <input type='checkbox' /> 
                          Name
                          <div className="end-varticalline"></div>
                          </th>
