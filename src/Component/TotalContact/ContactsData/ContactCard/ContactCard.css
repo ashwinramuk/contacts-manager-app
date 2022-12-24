@@ -39,3 +39,8 @@ tbody > tr >td> button{
     background-color: rgba(178, 223, 255, 0.31);
     border:  rgba(178, 223, 255, 0.31);
 }
+.loader-img{
+    position: absolute;
+    top:0;
+    left:20%;
+}

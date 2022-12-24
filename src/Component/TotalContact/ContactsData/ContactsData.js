@@ -17,7 +17,9 @@ import { selectContactsContext } from "../../../App";
 import './ContactsData.css'
 const ContactsData = ({searchData, setTrigger})=>{
     const [loader,setLoader] = useState(false)
+    const [selectAll, setSelectAll] = useState(false)
     const [contactsArr , setContactsArr] = useContext(contextProvider);
+    const [selectContacts, setSelectContacts] = useContext(selectContactsContext)
     const [currentpage, setcurrentpage]= useState(1);
     const [postsPerPage] = useState(11);
     const [searchContactArr, setSearchContactArr] = useState([])
@@ -86,7 +88,16 @@ const ContactsData = ({searchData, setTrigger})=>{
     for(let i=1; i<= Math.ceil(contactsArr.length/postsPerPage);i++){
         PageNoumbers.push(i)        
     }    
-    
+    // handling select all checkbox
+    const handleSelectAll=(e)=>{
+        setSelectAll(!selectAll);
+        if(!selectAll){
+            setSelectContacts(contactsArr.slice((currentpage-1)*postsPerPage,(currentpage*postsPerPage)>contactsArr.length?contactsArr.length:(currentpage*postsPerPage)))
+            
+        }else{
+            setSelectContacts([])
+        }
+    }
       return (
         <div id='contacts-data-container'>
         <nav id="nav-abr-contact-page">
@@ -113,7 +124,7 @@ const ContactsData = ({searchData, setTrigger})=>{
                 <thead>
                 <tr>
                     <th id="name">
-                         <input type='checkbox' /> 
+                         <input type='checkbox' onChange={handleSelectAll} checked={selectAll}/> 
                          Name
                          <div className="end-varticalline"></div>
                          </th>
@@ -149,12 +160,12 @@ const ContactsData = ({searchData, setTrigger})=>{
              {currentPost.map((obj,i)=>{
             return  (
                 <div key={obj._id}>              
-                <ContactCard data={{obj,i}} id='dual-tone' />                
+                <ContactCard data={{obj,i}} id='dual-tone' selectAll={[selectAll, setSelectAll]}/>                
                 </div>
             )
         })}
         </div>
-             <Pagination count={PageNoumbers.length} onChange={(event, value)=>{paginate(value)}}/>        
+             <Pagination count={PageNoumbers.length} onChange={(event, value)=>{paginate(value);setSelectAll(false);setSelectContacts([])}}/>        
         </div>
     )
 }
