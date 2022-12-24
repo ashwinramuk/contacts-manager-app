@@ -14,7 +14,7 @@ import { contextProvider } from "../../../App";
 import { selectContactsContext } from "../../../App";
 
 import './ContactsData.css'
-const ContactsData = ({searchData})=>{
+const ContactsData = ({searchData, setTrigger})=>{
     const [contactsArr , setContactsArr] = useContext(contextProvider);
     const [currentpage, setcurrentpage]= useState(1);
     const [postsPerPage] = useState(11);
@@ -91,8 +91,8 @@ const ContactsData = ({searchData})=>{
                 <ExpandMoreIcon/>
                 </button></div>
             <div id="button-d-i-e-container">
-                <button onClick={()=>{props.setTrigger((previous)=>({...previous,deletePopUp:true}))}} id="delete-button"><DeleteOutlineOutlinedIcon/>Delete</button>
-                <button onClick={()=>{props.setTrigger((previous)=>({...previous,importPopUp:true}))}} id="import-button"><ImportExportIcon/>Import</button>
+                <button onClick={()=>{setTrigger((previous)=>({...previous,deletePopUp:true}))}} id="delete-button"><DeleteOutlineOutlinedIcon/>Delete</button>
+                <button onClick={()=>{setTrigger((previous)=>({...previous,importPopUp:true}))}} id="import-button"><ImportExportIcon/>Import</button>
                 <button id="export-button"><FileUploadOutlinedIcon/> Export</button>
             </div>
         </nav>
