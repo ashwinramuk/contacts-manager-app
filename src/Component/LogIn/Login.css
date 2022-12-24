@@ -260,7 +260,8 @@
     top: 360px;
     left: 320px;
 }
-/* .loader-div{
+.loader-div{
     display:block;
     width:50%;
-} */
+    z-index: 1;
+}
