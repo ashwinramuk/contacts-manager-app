@@ -1,14 +1,13 @@
 import { Link } from "react-router-dom";
 import "./Login.css"
-import {useState,useContext} from 'react'
+import {useState,useContext, useEffect} from 'react'
 import { contextProvider } from "../../../src/App"
 import { useNavigate } from "react-router-dom";
-// import axios from "axios";
 
 
 const LogIn = () => {
-    const [token,setToken] = useContext(contextProvider)
-
+    const [token,setToken] = useState(null)
+    const [loader,setLoader] = useState(false)
     const [error, setError] = useState({emailError: "", passwordError: ""})
     const [userDetails, setUserDetails] = useState({
         email: "",
@@ -16,7 +15,7 @@ const LogIn = () => {
     })
 
     const navigate = useNavigate()
-    const submitHandler = async (e) =>{
+    const submitHandler=(e)=>{
         e.preventDefault();
 
         // email varification
@@ -34,8 +33,8 @@ const LogIn = () => {
             setError((oldData) => ({ ...oldData, passwordError: "" }))
         }             
         // console.log(error)
-
-        fetch("http://localhost:4000/api/users/login",{
+        setLoader(true)
+        fetch("https://contact-manager-app-backend.onrender.com/api/users/login",{
             method:"POST",
             body:JSON.stringify(userDetails),
             headers: {
@@ -45,24 +44,18 @@ const LogIn = () => {
         }).then((res)=>{
             return res.json()
         }).then((data)=>{
-            console.log(data)
-            console.log(data.token)
             setToken(data.token)
-            if(token){
-                alert(data.message)
-                navigate('/dashBoard')
-                document.location.reload()
-            }
-            // if(token){
-            //     navigate('/dashBoard')
-            // }
-
+            console.log("login screen token",typeof(token),token)
+            // if(data.token)navigate('/dashBoard')
         }).catch((err)=>{
             console.log(err)
-        })
-        // document.location.reload()
+        }).finally(()=>{setLoader(false)})
     }
-
+    useEffect(()=>{
+        localStorage.setItem("token",token)
+        console.log("login", localStorage.getItem("token"))
+        if(token)navigate("/dashBoard")
+    },[token])
     return (
         <>
             <div className="mainDiv">
@@ -74,11 +67,12 @@ const LogIn = () => {
                     </center>
                     <h1 className="logo" >Logo</h1>
                     <p className="para">Enter your credentials to access your account</p>
-                    <form method="POST"  onSubmit={submitHandler}>
+                    <form method="POST" onSubmit={submitHandler}>
                         <input className="userId" type="text" name="email"  onChange={(event) => {setUserDetails({ ...userDetails, email: event.target.value })}} placeholder="Email Id"></input>
                         <input className="password" type="password" name="password" onChange={(event)=>{setUserDetails({ ...userDetails, password: event.target.value })}} placeholder="Password"></input>
                         {/* <button className="signIn">Sign In</button> */}
                         <input type="submit" className="signIn" value="Sign In" /><br />
+                        {loader&&<div className="loader-div"><img src="./images/Loading_icon.gif" alt="Loading_icon"/></div>}
                     </form>
                         <Link to="/register"><button className="signUp">Sign Up</button></Link>
                     

@@ -1,7 +1,7 @@
 .mainDiv {
     background: #F5F5F5;
     position: relative;
-    width: 100vw;
+    width: 100vh;
     height: 100vh;
 }
 
@@ -223,4 +223,8 @@
     background: #7D8CC4;
     border-radius: 5px;
     padding-left: 130px;
+}
+.loader-div{
+    display:block;
+    width:50%
 }

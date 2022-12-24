@@ -36,7 +36,7 @@ const SignUp = () => {
             setError((oldData) => ({ ...oldData, passwordError: "" }))
         }
 
-        fetch("http://localhost:4000/api/users/register",{
+        fetch("https://contact-manager-app-backend.onrender.com/api/users/register",{
             method:"POST",
             body:JSON.stringify(userDetails),
             headers: {

@@ -4,7 +4,9 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import DashboardOutlinedIcon from '@mui/icons-material/DashboardOutlined';
 // import green from "@material-ui/core/colors/green";
 import './SideBar.css'
+import { Navigate, useNavigate } from 'react-router-dom';
 const SideBar = ()=>{
+    const navigate = useNavigate();
     return (
         <aside id="sidebar-container">
             <div id='logo-sidebar-container'>
@@ -29,7 +31,7 @@ const SideBar = ()=>{
             </div>
 
             <div id='logout-button'>
-                <button>
+                <button onClick={()=>{localStorage.setItem("token",null);navigate("/")}}>
                    <LogoutIcon/> <span id='logout-text'> Log out </span>                   
                 </button>
             </div>

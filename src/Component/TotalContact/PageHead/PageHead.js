@@ -14,7 +14,7 @@ const PageHead = (props) => {
     useEffect(() => {
         const config = {
             headers: {
-                Authorization: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzE4MzkwODIsImRhdGEiOiI2M2EzNTFhNmI2Y2I2Mjc4NmJkYzYyYWUiLCJpYXQiOjE2NzE4MzU0ODJ9.pNMZhF0Yj3nfNemAlxAWltPaP3klrcKVHV9SCLCbQa0"
+                Authorization: localStorage.getItem('token')
             }
         };
         axios.get("https://contact-manager-app-backend.onrender.com/api/contacts", config)

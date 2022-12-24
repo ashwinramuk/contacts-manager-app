@@ -3,20 +3,28 @@ import React, { useState, createContext } from 'react'
 import LogIn from './Component/LogIn/Login';
 import SignUp from './Component/SignUp/signUp';
 import TotalContact from "./Component/TotalContact/TotalContact"
+import './App.css';
 export const contextProvider = createContext();
+export const selectContactsContext = createContext()
 
 function App() {
-  const [token, setToken] = useState(null);
+  const [contactsArr, setContactsArr] = useState([]);
+  const [selectContacts, setSelectContacts] = useState([])
   return (
     <>
-      <contextProvider.Provider value={[token, setToken]}>
+      <contextProvider.Provider value={[contactsArr, setContactsArr]}>
+      <selectContactsContext.Provider value={[selectContacts,setSelectContacts]}>
         <BrowserRouter>
           <Routes>
+            <Route path='/' element={<LogIn/>}/>
             <Route path='/login' element={<LogIn />} />
             <Route path='/register' element={<SignUp />} />
+            
             <Route path='/dashBoard' element={<TotalContact/>} />
+            
           </Routes>
         </BrowserRouter>
+        </selectContactsContext.Provider>
       </contextProvider.Provider>
     </>
   );
