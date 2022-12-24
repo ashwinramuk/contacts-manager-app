@@ -2,7 +2,7 @@
 import ContactsOutlinedIcon from '@mui/icons-material/ContactsOutlined';
 import LogoutIcon from '@mui/icons-material/Logout';
 import DashboardOutlinedIcon from '@mui/icons-material/DashboardOutlined';
-import green from "@material-ui/core/colors/green";
+// import green from "@material-ui/core/colors/green";
 import './SideBar.css'
 const SideBar = ()=>{
     return (

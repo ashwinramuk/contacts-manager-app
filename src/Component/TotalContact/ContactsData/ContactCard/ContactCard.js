@@ -9,7 +9,7 @@ import { selectContactsContext } from '../../../../App';
 const ContactCard = (props)=>{
     // console.log(props.data.obj)
     let dualId = '';
-    if(props.data.i % 2 == 0){
+    if(props.data.i % 2 === 0){
         dualId = 'dual-tone'
     }
     const [checked, setChecked] = useState(false)
@@ -29,6 +29,7 @@ const ContactCard = (props)=>{
     useEffect(()=>{
         setChecked(false)
     },[])
+
     return (
         <tbody id={dualId}>   
         {/* <Tooltip title={{email}} arrow>    */}

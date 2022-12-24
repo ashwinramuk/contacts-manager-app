@@ -5,13 +5,17 @@ import ContactsData from "./ContactsData/ContactsData";
 import PopUp from "../PopUp/PopUp";
 
 const TotalContact = ()=>{
-    const [popUp, setPopUp] = useState({importPopUp:false,deletePopUp:false})
+const [searchData, setSearchData] = useState([])
+const [popUp, setPopUp] = useState({importPopUp:false,deletePopUp:false})
+const getSearchData = (data)=>{
+    setSearchData(data)
+}
     return (
         <>
         <SideBar/>
-        <PageHead/>
-        <ContactsData trigger={popUp} setTrigger={setPopUp} />
-        <PopUp trigger={popUp} setTrigger={setPopUp}/>
+        <PageHead getSearchData={getSearchData} />
+        <ContactsData trigger={popUp} setTrigger={setPopUp} searchData={searchData}/>
+        <PopUp trigger={popUp} setTrigger={setPopUp}/>         
         </>
     )
 }

@@ -1,4 +1,4 @@
-import {useState , useEffect} from "react"
+import {useState , useEffect} from "react"                                          // HAVE TO ADD ATHE TOKEN  IN 2 Use effects 
 import axios from 'axios';
 import ContactCard from './ContactCard/ContactCard';
 import FilterListIcon from '@mui/icons-material/FilterList';
@@ -14,30 +14,68 @@ import { contextProvider } from "../../../App";
 import { selectContactsContext } from "../../../App";
 
 import './ContactsData.css'
-let pagesize = 5;
-const ContactsData = (props)=>{
+const ContactsData = ({searchData})=>{
     const [contactsArr , setContactsArr] = useContext(contextProvider);
-    const [pagination , setpagination ]= useState ({
-        count: 0,
-        from :0 ,
-        from: pagesize
-    })
-
+    const [currentpage, setcurrentpage]= useState(1);
+    const [postsPerPage] = useState(11);
+    const [searchContactArr, setSearchContactArr] = useState([])
     useEffect(() => {
         const config = {
                     headers:{
                         Authorization : localStorage.getItem("token"),
                     }
                   };
+        
         axios.get("https://contact-manager-app-backend.onrender.com/api/contacts",config)
           .then(res => {
             // console.log(res.data.allcontact)
             setContactsArr(res.data.allcontact)
           })
           .catch(err => console.log(err));
-      }, []);
+      }, [postsPerPage]);
 
-    return (
+// useeffect for serchcontacts
+    useEffect(() => {
+        const config = {
+                    headers:{
+                        Authorization : localStorage.getItem("token")
+                    }
+                };
+        
+        axios.get(`https://contact-manager-app-backend.onrender.com/api/contacts/search/${searchData}`,config)
+        .then(res => {
+            console.log(res.data.allcontact,'serch data from contact data')
+            setSearchContactArr(res.data.allcontact)
+        
+        })
+        .catch(err => console.log(err));
+    }, [searchData]);
+
+    // paginattion 
+      const indexofLastPost = currentpage * postsPerPage;
+      const indexofFirstPost = indexofLastPost - postsPerPage;
+      //CONDITION FOR USER IF USER CLICK ON THE CONTACT SUGGSTION 
+      // THEN THIS WILL COMPARE THE SUGGSTION ARRAY AND PREVIOUS ARRAY (OF CONTACTS)
+      let currentPost;
+      if(searchContactArr === undefined){
+            currentPost = contactsArr.slice(indexofFirstPost, indexofLastPost);
+            console.log('NOTcommmmm.......................')
+      }else{
+            currentPost = searchContactArr.slice(indexofFirstPost, indexofLastPost)
+            console.log('commmmm.......................')
+      }
+
+    // function for change page 
+    const paginate = (numbr)=> setcurrentpage(numbr)
+
+    //for metarial ui       //For loop not needed only lenth is needed. count ++ 
+    //HAVE TO MODIFY
+    const PageNoumbers = [];
+    for(let i=1; i<= Math.ceil(contactsArr.length/postsPerPage);i++){
+        PageNoumbers.push(i)        
+    }    
+    
+      return (
         <div id='contacts-data-container'>
         <nav id="nav-abr-contact-page">
            <div id="button-d-f-container"> 
@@ -95,17 +133,15 @@ const ContactsData = (props)=>{
                 </tr>
                 </thead>                   
              </table>       
-             {contactsArr.map((obj,i)=>{
+             {currentPost.map((obj,i)=>{
             return  (
                 <>              
                 <ContactCard data={{obj,i}} id='dual-tone'/>                
                 </>
             )
         })}
-             {/* <ContactCard />
-             <ContactCard /> */}
         </div>
-             <Pagination count={10} onClick={(e)=>{console.log(e.target.value,'pagination')}}/>        
+             <Pagination count={PageNoumbers.length} onChange={(event, value)=>{paginate(value)}}/>        
         </div>
     )
 }
