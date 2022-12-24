@@ -148,9 +148,9 @@ const ContactsData = ({searchData, setTrigger})=>{
              {loader&&<div className="loader-div"><img src="./images/Loading_icon.gif"/></div>}       
              {currentPost.map((obj,i)=>{
             return  (
-                <>              
-                <ContactCard data={{obj,i}} id='dual-tone'/>                
-                </>
+                <div key={obj._id}>              
+                <ContactCard data={{obj,i}} id='dual-tone' />                
+                </div>
             )
         })}
         </div>
