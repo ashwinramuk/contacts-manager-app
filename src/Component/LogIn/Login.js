@@ -1,13 +1,20 @@
 import { Link } from "react-router-dom";
 import "./Login.css"
-import {useState,useContext, useEffect} from 'react'
+import React from "react";
+import {useState,useContext} from 'react'
 import { contextProvider } from "../../../src/App"
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom"
+// import eye from "../"
+// import axios from "axios";
 
 
 const LogIn = () => {
-    const [token,setToken] = useState(null)
-    const [loader,setLoader] = useState(false)
+    const [token,setToken] = useContext(contextProvider)
+    let [isRevealed,setIsReaveled] = useState(false)
+    let [userNotReg,setUserNotReg] = useState({
+        wrongPassword:"",
+        newUser:""
+    })
     const [error, setError] = useState({emailError: "", passwordError: ""})
     const [userDetails, setUserDetails] = useState({
         email: "",
@@ -15,7 +22,7 @@ const LogIn = () => {
     })
 
     const navigate = useNavigate()
-    const submitHandler=(e)=>{
+    const submitHandler = async (e) =>{
         e.preventDefault();
 
         // email varification
@@ -33,8 +40,8 @@ const LogIn = () => {
             setError((oldData) => ({ ...oldData, passwordError: "" }))
         }             
         // console.log(error)
-        setLoader(true)
-        fetch("https://contact-manager-app-backend.onrender.com/api/users/login",{
+
+        fetch("http://localhost:4000/api/users/login",{
             method:"POST",
             body:JSON.stringify(userDetails),
             headers: {
@@ -44,37 +51,60 @@ const LogIn = () => {
         }).then((res)=>{
             return res.json()
         }).then((data)=>{
+            console.log(data)
+            // console.log(data.token)
             setToken(data.token)
-            console.log("login screen token",typeof(token),token)
-            // if(data.token)navigate('/dashBoard')
+
+            if(token){
+                // alert(data.message)
+                navigate('/dashBoard')
+                document.location.reload()
+            }
+            if(data.status =="Password not matched"){
+                // <h1>{data.message}</h1>
+                console.log("from  Password not matched")
+                setUserNotReg((prevData)=>({...prevData,wrongPassword:data.message}))
+            }else{
+                setUserNotReg((prevData)=>({...prevData,wrongPassword:""}))
+            }
+
+            if(data.status === "Failed"){
+                setUserNotReg((prevData)=>({...prevData,newUser:data.message}))
+            }else{
+                setUserNotReg((prevData)=>({...prevData,newUser:""}))
+            }
+            // if(token){
+            //     navigate('/dashBoard')
+            // }
+
         }).catch((err)=>{
             console.log(err)
-        }).finally(()=>{setLoader(false)})
+        })
+     
+        // document.location.reload()
     }
-    useEffect(()=>{
-        localStorage.setItem("token",token)
-        console.log("login", localStorage.getItem("token"))
-        if(token)navigate("/dashBoard")
-    },[token])
+    console.log(userNotReg)
+
     return (
         <>
             <div className="mainDiv">
                 <img className="EllipseLeft" src="../images/Ellipse-31.png" alt="Ellipse-31" />
                 <div className="insideDiv">
                     <img className="dotsRight" src="./images/Dots-Group.png" alt="Dots-Group" />
-                    <center className="errorMessage">
-                        {error.emailError && <h5>{error.emailError}</h5>|| error.passwordError && <h5>{error.passwordError}</h5>}
-                    </center>
+
                     <h1 className="logo" >Logo</h1>
                     <p className="para">Enter your credentials to access your account</p>
-                    <form method="POST" onSubmit={submitHandler}>
+                    <form method="POST"  onSubmit={submitHandler}>
                         <input className="userId" type="text" name="email"  onChange={(event) => {setUserDetails({ ...userDetails, email: event.target.value })}} placeholder="Email Id"></input>
-                        <input className="password" type="password" name="password" onChange={(event)=>{setUserDetails({ ...userDetails, password: event.target.value })}} placeholder="Password"></input>
+                        <input className="password" type={isRevealed ? "text" :"password"}  name="password" onChange={(event)=>{setUserDetails({ ...userDetails, password: event.target.value })}} placeholder="Password"></input>
+                        <img id="hide" src="../images/eye.png" alt="eyecon" onClick={()=> setIsReaveled(prevState => !prevState)} />
                         {/* <button className="signIn">Sign In</button> */}
                         <input type="submit" className="signIn" value="Sign In" /><br />
-                        {loader&&<div className="loader-div"><img src="./images/Loading_icon.gif" alt="Loading_icon"/></div>}
                     </form>
                         <Link to="/register"><button className="signUp">Sign Up</button></Link>
+                    <center className="errorMessage">
+                        {error.emailError && <h5>{error.emailError}</h5>|| error.passwordError && <h5>{error.passwordError}</h5> || <h5>{userNotReg.wrongPassword}</h5> || <h5>{userNotReg.newUser}</h5>}
+                    </center>
                     
                     <img className="dotsLeft" src="./images/Dots-Group.png" alt="Dots-Group" />
 
@@ -86,6 +116,3 @@ const LogIn = () => {
 }
 
 export default LogIn
-/*
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@500&display=swap" rel="stylesheet">
-*/
