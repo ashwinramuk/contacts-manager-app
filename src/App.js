@@ -16,6 +16,7 @@ function App() {
       <selectContactsContext.Provider value={[selectContacts,setSelectContacts]}>
         <BrowserRouter>
           <Routes>
+            <Route path='/' element={<LogIn/>}/>
             <Route path='/login' element={<LogIn />} />
             <Route path='/register' element={<SignUp />} />
             
