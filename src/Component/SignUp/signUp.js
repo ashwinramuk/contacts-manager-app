@@ -65,7 +65,7 @@ const SignUp = () => {
     return (
         <>
             <div className="mainDiv">
-            <img className="EllipseLeft" src="../images/Ellipse-31.png" alt="Ellipse-31" />
+            <div className="ellipse1"></div>
                 <div className="insideDiv">
                     <div className="div1">
                         {/* <Dots/> */}
@@ -80,16 +80,19 @@ const SignUp = () => {
 
                     <div className="div2">
                         <div className="div2Form">
-                            {/* <div className="logo" >Logo</div><br></br> */}
-                            <img className="logo" src="../images/logo.png"/>
+                            <div className="logo" ><img src="../images/logo.png"/></div>
+                            
                             <p className="para signUpPara">Create New account</p>
                             <form className="form" onSubmit={submitHandler}>
                                 <input className="emailId" type="text" name="email" onChange={(event) => { setUserDetails({ ...userDetails, email: event.target.value }) }} placeholder="Email Id"></input>
+                                <div className="eye-div">
                                 <input className="password" type={isRevealed ? "text" : "password"} name="password" onChange={(event) => { setUserDetails({ ...userDetails, password: event.target.value }) }} placeholder="password"></input>
                                 <img id="hide" src="../images/eye1.png" alt="eyecon" onClick={() => setIsReaveled(prevState => !prevState)} />
+                                </div>
+                                <div className="eye-div">
                                 <input className="password confirmPassword" id="eyeCon" type={pwd ? "text" : "password"} name="confirmPassword" onChange={(event) => { setUserDetails({ ...userDetails, confirmPassword: event.target.value }) }} placeholder="confirmPassword"></input>
                                 <img id="hidez" src="../images/eye1.png" alt="eyecon" onClick={() => setpwd(prevState => !prevState)} />
-                                {/* <button className="signUp">Sign Up</button> */}
+                                </div>
                                 <input type="submit" className="signUp signUpRe" value="Sign Up" />
                             </form>
                             <p1 className="goto">if user is already registered  <Link className="SignInLink" to="/login">signIn</Link>  </p1>
@@ -110,8 +113,7 @@ const SignUp = () => {
                    
 
                 </div>
-                <div className="signUpEll">
-                <img className="ellipse32" src="../images/Ellipse-32.png" />
+                <div className="ellipse2">
                 </div>
 
             </div>
