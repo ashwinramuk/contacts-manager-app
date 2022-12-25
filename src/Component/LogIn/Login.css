@@ -217,3 +217,8 @@
 .logInEll{
     max-width: 100px;
 }
+.loader-div{
+    display:block;
+    width:50%;
+    z-index: 1;
+}
