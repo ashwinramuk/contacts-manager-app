@@ -2,11 +2,19 @@ tbody > tr > td {
     /* padding: 0 45px 0 33px; */
     /* border: 1px solid black; */
 }
+p{}
+#tabledata-card{
+    padding: 10px;
+}
 #namefild{
     width: 200px;
 }
 #desiggnationfild{
     width: 120px;
+}
+
+.for-incrise-the-padding-of-data{
+    padding: 10.2px;
 }
 #companyfild{
     width: 120px;
@@ -36,8 +44,61 @@ tbody > tr >td> button{
     border-radius: 10px;
 }
 #dual-tone > tr >td> button{
-    background-color: rgba(178, 223, 255, 0.31);
+    /* background-color: rgba(178, 223, 255, 0.31); */
     border:  rgba(178, 223, 255, 0.31);
+    background: none;
+}
+/* #namefild > p,
+#desiggnationfild >p ,
+ #companyfild > p, 
+ #industryfild > p, 
+ #email >p, 
+ #phonenofild>p ,
+ #countryfild >{
+padding: 15px;
+} */
+#namefild > input{
+    position: relative;
+    left: 15px;
+}
+#namefild > p{
+    position: relative;
+    left: 8px;
+
+}
+#desiggnationfild >p{
+    position: relative;
+    right: 15px;
+}
+#companyfild > p{
+    position: relative;
+    left: 27px;
+
+}
+ #industryfild > p{
+    position: relative;
+    left: 34px;
+
+ }
+ #email >p{
+    position: relative;
+    left: 46px;
+ } 
+ #phonenofild>p{
+    position: relative;
+    left: 67px;
+ } 
+ #countryfild > p{
+/* padding: 15px; */
+} 
+#actionfild > button{
+    position: relative;
+    left: 31px;
+}
+.loader-img{
+    position: absolute;
+    top:0;
+    left:20%;
 }
 .loader-img{
     position: absolute;

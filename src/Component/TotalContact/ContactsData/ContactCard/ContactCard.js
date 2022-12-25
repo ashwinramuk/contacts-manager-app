@@ -1,7 +1,5 @@
-
-import React, { Component }  from 'react';
-
-import {useState , useEffect} from "react"
+// import React, { Component }  from 'react';
+import {useState } from "react"
 import './ContactCard.css'
 import ModeEditOutlineOutlinedIcon from '@mui/icons-material/ModeEditOutlineOutlined';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
@@ -30,7 +28,7 @@ const ContactCard = (props)=>{
             setSelectContacts((prev)=>{console.log(prev);return [...prev,_id]})
         }else{
             setSelectContacts((prev)=>{console.log(prev);return prev.filter((e)=>e!==_id)})
-        }    
+        }
     }
     console.log("selectContacts",selectContacts)
     // useEffect(()=>{
@@ -62,30 +60,42 @@ const ContactCard = (props)=>{
     }
     return (
         <tbody id={dualId}>   
-        {/* <Tooltip title={{email}} arrow>    */}
-            <tr >
-                <td id='namefild'> <input type='checkbox' onChange={handleSelect} checked={(selectAll^checked)} />{name}</td>
-                <td id='desiggnationfild'>{designation}</td>
-                <td id='companyfild'>{company}</td>
-                <td id='industryfild'>{industry}</td>
+            <tr id="tabledata-card">
+                <td id='namefild'> 
+                    <input type='checkbox' 
+                    onChange={handleSelect} 
+                    checked={(selectAll^checked)} 
+                    /><p className="for-incrise-the-padding-of-data">{name}</p>
+                </td>
+                <td id='desiggnationfild'>
+                    <p>{designation}</p>
+                </td>
+                <td id='companyfild'>
+                    <p>{company}</p>
+                </td>
+                <td id='industryfild'>
+                    <p>{industry}</p>
+                </td>
                 <Tooltip title={`${email}`} arrow style={{"colur":"#ffff"}}>
                 <td id='email'>
                 
-                    {email}
+                    <p >{email}</p>
                     <button></button>
                 
                 </td>
                 </Tooltip>
-                <td id='phonenofild'>{phoneNumber}</td>
-                <td id='countryfild'>{country}</td>
+                <td id='phonenofild'>
+                    <p>{phoneNumber}</p>
+                    </td>
+                <td id='countryfild'>
+                    <p>{country}</p>
+                    </td>
                 <td id='actionfild'>
                     <button><ModeEditOutlineOutlinedIcon/></button>
-                    <button onClick={handleDelete}><DeleteOutlineOutlinedIcon/></button>
+                    <button onClick={handleDelete}><DeleteOutlineOutlinedIcon style={{ color: "red" }}/></button>
                     {loader&&<img className="loader-img" src="./images/Loading_icon.gif" alt="loading_icon.gif"/>}
                 </td>
-            </tr>
-        {/* </Tooltip>            */}
-        
+            </tr>        
         </tbody>      
         
     )
