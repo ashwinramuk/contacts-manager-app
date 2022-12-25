@@ -58,12 +58,13 @@ const PageHead = (props) => {
                     return sarchTem && email.startsWith(sarchTem) && email !== sarchTem
                 }).slice(0, 6)                  // only 6 suggstion will show to the user
                     .map((item) => (
-                        <div
+                        <div 
+                            
                             key={item._id}
                             onClick={() => onSearch(item.email)} 
                         >
-                        <SearchIcon />
-                        {item.email}
+                        <SearchIcon className="serchbar-form-deopwon"/>
+                       <p id="srech-dropdown-email"> {item.email}</p>
                         </div>                    // search suggestions 
                     ))}
             </div>
