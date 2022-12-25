@@ -34,7 +34,7 @@ const ContactsData = ({ searchData, setTrigger }) => {
             .then(res => {
                 console.log(res.data)
                 if (res.data.status == "Success") {
-                    setContactsArr(res.data.allcontact)
+                    setContactsArr(res.data.allcontact.map((contacts)=>{return {...contacts,selected:false}}))
                 } else {
                     console.log("get fetch error message", res.data.message)
                 }
@@ -92,12 +92,15 @@ const ContactsData = ({ searchData, setTrigger }) => {
     const handleSelectAll=(e)=>{
         setSelectAll(!selectAll);
         if(!selectAll){
-            setSelectContacts(contactsArr.slice((currentpage-1)*postsPerPage,(currentpage*postsPerPage)>contactsArr.length?contactsArr.length:(currentpage*postsPerPage)))
-        
+            // setSelectContacts(contactsArr.slice((currentpage-1)*postsPerPage,(currentpage*postsPerPage)>contactsArr.length?contactsArr.length:(currentpage*postsPerPage)))
+            setContactsArr(contactsArr.map((contacts,i)=>{return i>=((currentpage-1)*postsPerPage)&&i<((currentpage*postsPerPage)>contactsArr.length?contactsArr.length:(currentpage*postsPerPage))?{...contacts,selected:true}:contacts}))
         }else{
-            setSelectContacts([])
+            setContactsArr(contactsArr.map((contacts,i)=>{return i>=((currentpage-1)*postsPerPage)&&i<((currentpage*postsPerPage)>contactsArr.length?contactsArr.length:(currentpage*postsPerPage))?{...contacts,selected:false}:contacts}))
         }
+        console.log("contact data",contactsArr.filter((contact)=>{if(contact.selected)return contact._id}))
     }
+    console.log("contact data",contactsArr.filter((contact)=>{if(contact.selected)return contact._id}))
+
     return (
         <div id='contacts-data-container'>
             <nav id="nav-abr-contact-page">
@@ -182,7 +185,7 @@ const ContactsData = ({ searchData, setTrigger }) => {
                 {currentPost.map((obj, i) => {
                     return (
                         <div key={obj._id}>
-                            <ContactCard data={{ obj, i }} id='dual-tone' selectAll={[selectAll, setSelectAll]}/>
+                            <ContactCard data={{ obj, i }} id='dual-tone' />
                         </div>
                     )
                 })}
@@ -190,7 +193,8 @@ const ContactsData = ({ searchData, setTrigger }) => {
             <Pagination 
             id="pagination-met-ui"
             count={PageNoumbers.length} 
-            onChange={(event, value) => { paginate(value);setSelectAll(false);setSelectContacts([]) }} 
+            onChange={(event, value) => { paginate(value);setSelectAll(false);setContactsArr(contactsArr.map((contacts,i)=>{return i>=((currentpage-1)*postsPerPage)&&i<=((currentpage*postsPerPage)>contactsArr.length?contactsArr.length:(currentpage*postsPerPage))?{...contacts,selected:false}:contacts}))
+        }} 
             />
         </div>
     )

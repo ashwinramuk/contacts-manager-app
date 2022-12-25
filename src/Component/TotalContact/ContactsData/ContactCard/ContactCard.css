@@ -35,7 +35,7 @@ p{}
     width: 130px;
 }
 tbody > tr >td> button{
-    background-color: #FBFBFB;
+    background: none;
     border: #FBFBFB;;
 }
 
@@ -99,9 +99,5 @@ padding: 15px;
     position: absolute;
     top:0;
     left:20%;
-}
-.loader-img{
-    position: absolute;
-    top:0;
-    left:20%;
+    width:50px;
 }
