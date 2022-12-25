@@ -74,7 +74,7 @@ const PageHead = (props) => {
                     <img id='user-image' src='./userImage/download.jfif' alt='user' />
                 </div>
                 <div id='user-name-container'>
-                    <p> <b>Ram Darvin</b></p>
+                    <p> <b>{JSON.parse(localStorage.getItem("userInfo")).email.split("@")[0]}</b></p>
                     <p> Super Adimn</p>
                 </div>
             </div>
