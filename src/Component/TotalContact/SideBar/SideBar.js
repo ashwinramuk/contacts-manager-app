@@ -32,7 +32,7 @@ const SideBar = ()=>{
             </div>
 
             <div id='logout-button'>
-                <button onClick={()=>{localStorage.setItem("token",null);navigate("/")}}>
+                <button onClick={()=>{localStorage.clear();navigate("/")}}>
                    <LogoutIcon/> <span id='logout-text'> Log out </span>                   
                 </button>
             </div>
