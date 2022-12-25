@@ -1,7 +1,7 @@
 #contacts-data-container {
     position: absolute;
     width: 1212px;
-    height: 617px;
+    height: 568px;
     left: 255px;
     top: 124px;
     background: #FBFBFB;
@@ -370,9 +370,8 @@ p {
 #pagination-met-ui {
     display: inline-block;
     position: relative;
-    left: 1000px;
-    top: 8px;
-
+    left: 1274px;
+    top: 703px;
 }
 
 .loader-div {
