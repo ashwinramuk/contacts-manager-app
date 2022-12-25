@@ -11,12 +11,14 @@
 }
 .popup-inner, .popup-importFile{
     position:relative;
-    min-height:250px;
+    height:250px;
     min-width:250px;
     max-width:300px;
     background-color: rgb(255,255,255);
     border-radius: 10px;
     align-items:center;
+    display:flex;
+    flex-direction: column;
 }
 .popup-importFile{
     padding: 32px;
@@ -46,12 +48,13 @@
     opacity: 0.8;
     font-size: 1em;
     line-height: 1.8em;
+    display:block;
 }
 .popup-cancel-btn{
-    /* position:absolute;
-    bottom:32px;
+    position:relative;
+    bottom:1px;
     margin-left:auto;
-    margin-right:auto; */
+    margin-right:auto;
     background: #2DA5FC;
     border-radius: 5px;
     min-width:150px;
@@ -103,11 +106,13 @@
     width:50%;
     display: block;
 }
-.loader-img{
-    width:50%;
+.loader-div{
     display:block;
-    margin:30px auto;
-    z-index: 1;
+    width:100px;
+    margin:auto;
+}
+.loader-img{
+    width:100%;
 }
 .link{
     text-decoration: none;
