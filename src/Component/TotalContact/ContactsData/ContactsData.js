@@ -21,6 +21,7 @@ const ContactsData = ({ searchData, setTrigger }) => {
     const [currentpage, setcurrentpage] = useState(1);
     const [postsPerPage] = useState(11);
     const [searchContactArr, setSearchContactArr] = useState([])
+    const [dataStatus, setdataStatus] = useState(true);
     useEffect(() => {
         const config = {
             headers: {
@@ -30,16 +31,18 @@ const ContactsData = ({ searchData, setTrigger }) => {
         setLoader(true)
         axios.get(process.env.REACT_APP_API_BASE_URL+"/api/contacts", config)
             .then(res => {
-                console.log(res.data)
+                // console.log(res.data)
                 if (res.data.status == "Success") {
                     setContactsArr(res.data.allcontact.map((contacts)=>{return {...contacts,selected:false}}))
                 } else {
                     console.log("get fetch error message", res.data.message)
+                    setdataStatus(false)
                 }
             })
             .catch(err => {
                 if (err) {
                     console.log(err)
+                    setdataStatus(false)
 
                 }
 
@@ -58,9 +61,12 @@ const ContactsData = ({ searchData, setTrigger }) => {
             .then(res => {
                 console.log(res.data.allcontact, 'serch data from contact data')
                 setSearchContactArr(res.data.allcontact)
-
             })
-            .catch(err => console.log(err));
+            .catch((err) => {
+                console.log(err)
+                setdataStatus(false)
+
+            });
     }, [searchData]);
 
     // paginattion 
@@ -87,7 +93,7 @@ const ContactsData = ({ searchData, setTrigger }) => {
         PageNoumbers.push(i)
     }
     // handling select all checkbox
-    const handleSelectAll=(e)=>{
+    const handleSelectAll = (e) => {
         setSelectAll(!selectAll);
         if(!selectAll){
             setContactsArr(contactsArr.map((contacts,i)=>{return i>=((currentpage-1)*postsPerPage)&&i<((currentpage*postsPerPage)>contactsArr.length?contactsArr.length:(currentpage*postsPerPage))?{...contacts,selected:true}:contacts}))
@@ -99,93 +105,106 @@ const ContactsData = ({ searchData, setTrigger }) => {
     console.log("contact data",contactsArr.filter((contact)=>{if(contact.selected)return contact._id}))
 
     return (
-        <div id='contacts-data-container'>
-            <nav id="nav-abr-contact-page">
-                <div id="button-d-f-container">
-                    <button id="s-date-button">
-                        < CalendarMonthOutlinedIcon id='calander-icon'/>
-                        <p>Select Date</p>
-                        <ExpandMoreIcon id='expand-more-date' />
-                    </button>
+        <>
+            <div id='contacts-data-container'>
+                <nav id="nav-abr-contact-page">
+                    <div id="button-d-f-container">
+                        <button id="s-date-button">
+                            < CalendarMonthOutlinedIcon id='calander-icon' />
+                            <p>Select Date</p>
+                            <ExpandMoreIcon id='expand-more-date' />
+                        </button>
 
-                    <button id="filter-button">
-                        <FilterListIcon  id='filter-list-filter-button'/>
-                        <p>Filter</p>
-                        <div id="vartical-line"></div>
-                        <ExpandMoreIcon id='dropdown-symble' />
-                    </button></div>
-                <div id="button-d-i-e-container">
-                    <button 
-                    onClick={() => { setTrigger((previous) => ({ ...previous, deletePopUp: true })) }} 
-                        id="delete-button">
-                            <DeleteOutlineOutlinedIcon id='deelt-icon'/>
+                        <button id="filter-button">
+                            <FilterListIcon id='filter-list-filter-button' />
+                            <p>Filter</p>
+                            <div id="vartical-line"></div>
+                            <ExpandMoreIcon id='dropdown-symble' />
+                        </button></div>
+                    <div id="button-d-i-e-container">
+                        <button
+                            onClick={() => { setTrigger((previous) => ({ ...previous, deletePopUp: true })) }}
+                            id="delete-button">
+                            <DeleteOutlineOutlinedIcon id='deelt-icon' />
                             <p>Delete</p>
-                            </button>
-                    <button onClick={() => { setTrigger((previous) => ({ ...previous, importPopUp: true })) }} 
-                    id="import-button">
-                        <ImportExportIcon />
-                        <p>Import</p>
                         </button>
-                    <button id="export-button">
-                        <FileUploadOutlinedIcon id='export-icon' />
-                        <p>Export</p>
+                        <button onClick={() => { setTrigger((previous) => ({ ...previous, importPopUp: true })) }}
+                            id="import-button">
+                            <ImportExportIcon />
+                            <p>Import</p>
                         </button>
-                </div>
-            </nav>
-            <div>
-                <table>
-                    <thead>
-                        <tr>
-                            <th id="name">
-                                <input type='checkbox' onChange={handleSelectAll} checked={selectAll}/>
+                        <button id="export-button">
+                            <FileUploadOutlinedIcon id='export-icon' />
+                            <p>Export</p>
+                        </button>
+                    </div>
+                </nav>
+                <div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th id="name">
+                                    <input type='checkbox' onChange={handleSelectAll} checked={selectAll} />
                                     <p>Name</p>
-                                <div className="end-varticalline"></div>
-                            </th>
-                            <th id="Designation">
-                                <button> 
-                                    <p>Designation </p>
-                                     <UnfoldMoreOutlinedIcon id ='dropdon-for-disitaton-logo'/>
-                                     </button>
-                                <div className="end-varticalline"></div>
-                            </th>
-                            <th id="Company">
-                                <button>
-                                    <p>Company </p> 
-                                    <UnfoldMoreOutlinedIcon id='company-dropdown-icon' /> 
+                                    <div className="end-varticalline"></div>
+                                </th>
+                                <th id="Designation">
+                                    <button>
+                                        <p>Designation </p>
+                                        <UnfoldMoreOutlinedIcon id='dropdon-for-disitaton-logo' />
                                     </button>
-                                <div className="end-varticalline"></div>
-                            </th>
-                            <th id="Industry">
-                                <button>
-                                    <p>Industry </p>
-                                    <UnfoldMoreOutlinedIcon id='industry-dropdown-icon' /> 
+                                    <div className="end-varticalline"></div>
+                                </th>
+                                <th id="Company">
+                                    <button>
+                                        <p>Company </p>
+                                        <UnfoldMoreOutlinedIcon id='company-dropdown-icon' />
                                     </button>
-                                <div className="end-varticalline"></div>
-                            </th>
-                            <th id="Email">
-                             <p>Email </p>
-                                <div className="end-varticalline"></div>
-                            </th>
-                            <th id="Phone">
-                                <p>Phone number </p>
-                                <div className="end-varticalline"></div>
-                            </th>
-                            <th id="Country">
-                                <p> Country </p>
-                                <div className="end-varticalline"></div>
-                            </th>
-                            <th id="Action"><p>Action</p></th>
-                        </tr>
-                    </thead>
-                </table>
-                {loader && <div className="loader-div"><img src="./images/Loading_icon.gif" /></div>}
-                {currentPost.map((obj, i) => {
-                    return (
-                        <div key={obj._id}>
-                            <ContactCard data={{ obj, i }} id='dual-tone' />
-                        </div>
-                    )
-                })}
+                                    <div className="end-varticalline"></div>
+                                </th>
+                                <th id="Industry">
+                                    <button>
+                                        <p>Industry </p>
+                                        <UnfoldMoreOutlinedIcon id='industry-dropdown-icon' />
+                                    </button>
+                                    <div className="end-varticalline"></div>
+                                </th>
+                                <th id="Email">
+                                    <p>Email </p>
+                                    <div className="end-varticalline"></div>
+                                </th>
+                                <th id="Phone">
+                                    <p>Phone number </p>
+                                    <div className="end-varticalline"></div>
+                                </th>
+                                <th id="Country">
+                                    <p> Country </p>
+                                    <div className="end-varticalline"></div>
+                                </th>
+                                <th id="Action"><p>Action</p></th>
+                            </tr>
+                        </thead>
+                    </table>
+                    {loader && <div className="loader-div"><img src="./images/Loading_icon.gif" /></div>}
+                    {currentPost.map((obj, i) => {
+                        return (
+                            <>
+                                <div key={obj._id}>
+                                    <ContactCard
+                                        data={{ obj, i }}
+                                        id='dual-tone'
+                                        
+                                    />
+                                </div>
+                            </>
+                        )
+                    })}
+                    
+                    { dataStatus ? (!contactsArr.length ? <h1>Your Contact list is Empty! Click on Import to add contacts</h1> : <></>):(<></>)}
+                    
+                    {!dataStatus ? (<h1>Cant't Fetch the data! Login again</h1>) : (<></>)}
+                </div>
+
             </div>
             <Pagination 
             id="pagination-met-ui"
@@ -193,7 +212,7 @@ const ContactsData = ({ searchData, setTrigger }) => {
             onChange={(event, value) => { paginate(value);setSelectAll(false);setContactsArr(contactsArr.map((contacts,i)=>{return i>=((currentpage-1)*postsPerPage)&&i<=((currentpage*postsPerPage)>contactsArr.length?contactsArr.length:(currentpage*postsPerPage))?{...contacts,selected:false}:contacts}))
         }} 
             />
-        </div>
+        </>
     )
 }
 export default ContactsData;
