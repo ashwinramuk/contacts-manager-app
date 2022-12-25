@@ -6,8 +6,7 @@ import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined
 import Tooltip from '@mui/material/Tooltip';
 import {useContext} from 'react'
 import { contextProvider } from "../../../../App";
-import { selectContactsContext } from '../../../../App';
-const url="https://contact-manager-app-backend.onrender.com/api/contacts"
+const url=process.env.REACT_APP_API_BASE_URL+"/api/contacts"
 const ContactCard = (props)=>{
     // console.log(props.data.obj)
     let dualId = '';
@@ -26,17 +25,12 @@ const ContactCard = (props)=>{
         setSelectOne(!selectOne)
             if(!selectOne){
                 setContactsArr(contactsArr.map((contacts,i)=>{return contacts._id==_id?{...contacts,selected:true}:contacts}))
-                // setSelectContacts((prev)=>{console.log(prev);return [...prev,_id]})
             }else{
                 setContactsArr(contactsArr.map((contacts,i)=>{return contacts._id==_id?{...contacts,selected:false}:contacts}))
-                // setSelectContacts((prev)=>{console.log(prev);return prev.filter((e)=>e!==_id)})
             }
         console.log("contact card",contactsArr.filter((contact)=>{if(contact.selected)return contact._id}))
     }
-    // console.log("contactArr in contact card",contactsArr)
-    // useEffect(()=>{
-    //     setChecked(false)
-    // },[])
+
     console.log("contact card",contactsArr.filter((contact)=>{if(contact.selected)return contact._id}))
 
     function handleDelete(){

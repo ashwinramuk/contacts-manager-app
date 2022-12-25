@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import {useContext} from 'react'
 import { contextProvider } from "../../../App"; 
 import { selectContactsContext } from "../../../App"; 
-const url = "https://contact-manager-app-backend.onrender.com/api/contacts"
+const url = process.env.REACT_APP_API_BASE_URL+"/api/contacts"
 
 const DeletePopUp = (props) =>{
     const [contactsArr,setContactsArr] = useContext(contextProvider)

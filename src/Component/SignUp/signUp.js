@@ -40,7 +40,7 @@ const SignUp = () => {
             setError((oldData) => ({ ...oldData, passwordError: "" }))
         }
 
-        fetch("https://contact-manager-app-backend.onrender.com/api/users/register", {
+        fetch(process.env.REACT_APP_API_BASE_URL+"/api/users/register", {
             method: "POST",
             body: JSON.stringify(userDetails),
             headers: {

@@ -43,7 +43,7 @@ const LogIn = () => {
         // console.log(error)
 
         setLoader(true)
-        fetch("https://contact-manager-app-backend.onrender.com/api/users/login", {
+        fetch(process.env.REACT_APP_API_BASE_URL+"/api/users/login", {
             method: "POST",
             body: JSON.stringify(userDetails),
             headers: {

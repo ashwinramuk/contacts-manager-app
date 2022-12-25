@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import {useContext} from 'react'
-import { contextProvider, selectContactsContext } from "../../../App"; 
+import { contextProvider } from "../../../App"; 
 
 const ImportPopUp = (props) =>{
-    const url = "https://contact-manager-app-backend.onrender.com/api/contacts"
-    const [selectContacts,setSelectContacts] = useContext(selectContactsContext)
+    const url = process.env.REACT_APP_API_BASE_URL+"/api/contacts"
     const [contactsArr, setContactsArr] = useContext(contextProvider)
     const [response, setResponse] = useState(null)
     const [loader, setLoader]=useState(false)
