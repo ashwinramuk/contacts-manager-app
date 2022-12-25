@@ -14,17 +14,17 @@ function App() {
   return (
     <>
       <contextProvider.Provider value={[contactsArr, setContactsArr]}>
-      <selectContactsContext.Provider value={[selectContacts,setSelectContacts]}>
-        <BrowserRouter>
-          <Routes>
-            <Route path='/' element={<LogIn/>}/>
-            <Route path='/login' element={<LogIn />} />
-            <Route path='/register' element={<SignUp />} />
-            <Route element={<ProtectedRoute/>}>
-              <Route path='/dashBoard' element={<TotalContact/>}/>          
-            </Route>
-          </Routes>
-        </BrowserRouter>
+       <selectContactsContext.Provider value={[selectContacts, setSelectContacts]}>
+          <BrowserRouter>
+            <Routes>
+              <Route path='/' element={<LogIn />} />
+              <Route path='/login' element={<LogIn />} />
+              <Route path='/register' element={<SignUp />} />
+              <Route element={<ProtectedRoute />}>
+                <Route path='/dashBoard' element={<TotalContact />} />
+              </Route>
+            </Routes>
+          </BrowserRouter>
         </selectContactsContext.Provider>
       </contextProvider.Provider>
     </>
