@@ -1,8 +1,4 @@
-tbody > tr > td {
-    /* padding: 0 45px 0 33px; */
-    /* border: 1px solid black; */
-}
-p{}
+
 #tabledata-card{
     padding: 10px;
 }
@@ -88,9 +84,7 @@ padding: 15px;
     position: relative;
     left: 67px;
  } 
- #countryfild > p{
-/* padding: 15px; */
-} 
+
 #actionfild > button{
     position: relative;
     left: 31px;

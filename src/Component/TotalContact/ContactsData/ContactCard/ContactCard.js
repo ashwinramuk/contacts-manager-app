@@ -48,7 +48,10 @@ const ContactCard = (props)=>{
                 <td id='industryfild'>
                     <p>{industry}</p>
                 </td>
-                <Tooltip title={`${email}`} arrow style={{"colur":"#ffff"}}>
+                <Tooltip 
+                id="tooltio-text"
+                title={`${email}`} 
+                arrow style={{"colur":"#ffff"}}>
                 <td id='email'>
                 
                     <p >{email}</p>

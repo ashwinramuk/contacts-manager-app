@@ -125,3 +125,12 @@ p{
 
 
 */
+.serchbar-form-deopwon {
+    margin: 4px 0px 5px 15px;
+}
+
+#srech-dropdown-email{
+    position: relative;
+    bottom: 8px;
+    right: -13px;
+} 
