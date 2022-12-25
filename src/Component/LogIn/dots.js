@@ -3,7 +3,7 @@ const Dots = () => {
     return (
         <>
             {dot.map((i)=>
-            <span class="dot"></span>
+            <span className="dot" key={i}></span>
             )}
         </>
     )

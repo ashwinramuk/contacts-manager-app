@@ -6,15 +6,12 @@ import TotalContact from "./Component/TotalContact/TotalContact"
 import './App.css';
 import ProtectedRoute from './Routes/ProtectedRoutes/ProtectedRoutes';
 export const contextProvider = createContext();
-export const selectContactsContext = createContext()
 
 function App() {
   const [contactsArr, setContactsArr] = useState([]);
-  const [selectContacts, setSelectContacts] = useState([])
   return (
     <>
       <contextProvider.Provider value={[contactsArr, setContactsArr]}>
-       <selectContactsContext.Provider value={[selectContacts, setSelectContacts]}>
           <BrowserRouter>
             <Routes>
               <Route path='/' element={<LogIn />} />
@@ -25,7 +22,6 @@ function App() {
               </Route>
             </Routes>
           </BrowserRouter>
-        </selectContactsContext.Provider>
       </contextProvider.Provider>
     </>
   );

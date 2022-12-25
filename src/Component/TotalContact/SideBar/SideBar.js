@@ -11,7 +11,7 @@ const SideBar = ()=>{
     return (
         <aside id="sidebar-container">
             <div id='logo-sidebar-container'>
-                Logo
+                <img src="./images/logo.png" alt="logo"/>
             </div>
 
             <div id='dashbord-icon'>
@@ -30,7 +30,7 @@ const SideBar = ()=>{
                     <div id='total-contact-icon-line'></div>
                 </div>
             </div>
-<div id='line-befoere-logout'></div>
+            <hr className='horizontal-line'/>
             <div id='logout-button'>
                 <button onClick={()=>{localStorage.clear();navigate("/")}}>
                    <LogoutIcon/> <span id='logout-text'> Log out </span>                   

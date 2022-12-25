@@ -43,7 +43,7 @@ const LogIn = () => {
         // console.log(error)
 
         setLoader(true)
-        fetch("https://contact-manager-app-backend.onrender.com/api/users/login", {
+        fetch(process.env.REACT_APP_API_BASE_URL+"/api/users/login", {
             method: "POST",
             body: JSON.stringify(userDetails),
             headers: {
@@ -67,11 +67,10 @@ const LogIn = () => {
             } else {
                 setUserNotReg((prevData) => ({ ...prevData, newUser: "" }))
                 localStorage.setItem("token", data.token)
+                localStorage.setItem("userInfo", JSON.stringify({email:userDetails.email}))
                 navigate("/dashBoard")
             }
-            // if(token){
-            //     navigate('/dashBoard')
-            // }
+ 
 
         }).catch((err) => {
             console.log(err)
@@ -83,8 +82,8 @@ const LogIn = () => {
     return (
         <>
             <div className="mainDiv">
-                <div className="ellipse1">
-                    <img className="EllipseLeft" src="../images/Ellipse-31.png" alt="Ellipse-31" />
+                <div className="ellipse1" >
+                    {/* <img className="EllipseLeft" src="../images/Ellipse-31.png" alt="Ellipse-31" /> */}
                 </div>
 
                 <div className="insideDiv">
@@ -100,18 +99,21 @@ const LogIn = () => {
                     </div>
                     <div className="div2">
                         <div className="div2Form">
-                            {/* <div className="logo" >Logo</div><br></br> */}
-                            <img className="logo" src="../images/logo.png"/>
+                            <div className="logo" ><img src="../images/logo.png"/></div>
+                            
                             <p className="para">Enter your credentials to access your account</p>
                             <form className="form" method="POST" onSubmit={submitHandler}>
                                 <input className="emailId" type="text" name="email" onChange={(event) => { setUserDetails({ ...userDetails, email: event.target.value }) }} placeholder="Email Id"></input>
-                                <input className="password" type={isRevealed ? "text" : "password"} name="password" onChange={(event) => { setUserDetails({ ...userDetails, password: event.target.value }) }} placeholder="Password"></input><br></br>
+                                <div className="eye-div">
+                                <input className="password" type={isRevealed ? "text" : "password"} name="password" onChange={(event) => { setUserDetails({ ...userDetails, password: event.target.value }) }} placeholder="Password"></input>
                                 <img id="hide" src="../images/eye1.png" alt="eyecon" onClick={() => setIsReaveled(prevState => !prevState)} />
-                                {/* <button className="signIn">Sign In</button> */}
+                                </div>
+                                <br></br>
                                 <input type="submit" className="signIn" value="Sign In" /><br />
-                                {loader && <div className="loader-div"><img src="./images/Loading_icon.gif" alt="Loading_icon" /></div>}
                             </form>
                             <Link to="/register"><button className="signUp">Sign Up</button></Link>
+                            {loader && <div className="loader-div"><img src="./images/Loading_icon.gif" alt="Loading_icon" /></div>}
+
                             <center className="errorMessage ">
                                 {error.emailError && <h5>{error.emailError}</h5> || error.passwordError && <h5>{error.passwordError}</h5> || <h5>{userNotReg.wrongPassword}</h5> || <h5>{userNotReg.newUser}</h5>}
                             </center>
@@ -128,8 +130,7 @@ const LogIn = () => {
                     </div>
 
                 </div>
-                <div className="logInEll">
-                    <img className="ellipse32" src="../images/Ellipse-32.png" />
+                <div className="ellipse2">
                 </div>
 
             </div>

@@ -12,14 +12,12 @@ import UnfoldMoreOutlinedIcon from '@mui/icons-material/UnfoldMoreOutlined';
 import Pagination from '@mui/material/Pagination'
 import { useContext } from 'react'
 import { contextProvider } from "../../../App";
-import { selectContactsContext } from "../../../App";
 
 import './ContactsData.css'
 const ContactsData = ({ searchData, setTrigger }) => {
     const [loader, setLoader] = useState(false)
     const [selectAll, setSelectAll] = useState(false)
     const [contactsArr, setContactsArr] = useContext(contextProvider);
-    const [selectContacts, setSelectContacts] = useContext(selectContactsContext)
     const [currentpage, setcurrentpage] = useState(1);
     const [postsPerPage] = useState(11);
     const [searchContactArr, setSearchContactArr] = useState([])
@@ -31,11 +29,11 @@ const ContactsData = ({ searchData, setTrigger }) => {
             }
         };
         setLoader(true)
-        axios.get("https://contact-manager-app-backend.onrender.com/api/contacts", config)
+        axios.get(process.env.REACT_APP_API_BASE_URL+"/api/contacts", config)
             .then(res => {
                 // console.log(res.data)
                 if (res.data.status == "Success") {
-                    setContactsArr(res.data.allcontact)
+                    setContactsArr(res.data.allcontact.map((contacts)=>{return {...contacts,selected:false}}))
                 } else {
                     console.log("get fetch error message", res.data.message)
                     setdataStatus(false)
@@ -59,7 +57,7 @@ const ContactsData = ({ searchData, setTrigger }) => {
             }
         };
 
-        axios.get(`https://contact-manager-app-backend.onrender.com/api/contacts/search/${searchData}`, config)
+        axios.get(process.env.REACT_APP_API_BASE_URL+`/api/contacts/search/${searchData}`, config)
             .then(res => {
                 console.log(res.data.allcontact, 'serch data from contact data')
                 setSearchContactArr(res.data.allcontact)
@@ -97,13 +95,15 @@ const ContactsData = ({ searchData, setTrigger }) => {
     // handling select all checkbox
     const handleSelectAll = (e) => {
         setSelectAll(!selectAll);
-        if (!selectAll) {
-            setSelectContacts(contactsArr.slice((currentpage - 1) * postsPerPage, (currentpage * postsPerPage) > contactsArr.length ? contactsArr.length : (currentpage * postsPerPage)))
-
-        } else {
-            setSelectContacts([])
+        if(!selectAll){
+            setContactsArr(contactsArr.map((contacts,i)=>{return i>=((currentpage-1)*postsPerPage)&&i<((currentpage*postsPerPage)>contactsArr.length?contactsArr.length:(currentpage*postsPerPage))?{...contacts,selected:true}:contacts}))
+        }else{
+            setContactsArr(contactsArr.map((contacts,i)=>{return i>=((currentpage-1)*postsPerPage)&&i<((currentpage*postsPerPage)>contactsArr.length?contactsArr.length:(currentpage*postsPerPage))?{...contacts,selected:false}:contacts}))
         }
+        console.log("contact data",contactsArr.filter((contact)=>{if(contact.selected)return contact._id}))
     }
+    console.log("contact data",contactsArr.filter((contact)=>{if(contact.selected)return contact._id}))
+
     return (
         <>
             <div id='contacts-data-container'>
@@ -193,7 +193,7 @@ const ContactsData = ({ searchData, setTrigger }) => {
                                     <ContactCard
                                         data={{ obj, i }}
                                         id='dual-tone'
-                                        selectAll={[selectAll, setSelectAll]}
+                                        
                                     />
                                 </div>
                             </>
@@ -206,10 +206,11 @@ const ContactsData = ({ searchData, setTrigger }) => {
                 </div>
 
             </div>
-            <Pagination
-                id="pagination-met-ui"
-                count={PageNoumbers.length}
-                onChange={(event, value) => { paginate(value); setSelectAll(false); setSelectContacts([]) }}
+            <Pagination 
+            id="pagination-met-ui"
+            count={PageNoumbers.length} 
+            onChange={(event, value) => { paginate(value);setSelectAll(false);setContactsArr(contactsArr.map((contacts,i)=>{return i>=((currentpage-1)*postsPerPage)&&i<=((currentpage*postsPerPage)>contactsArr.length?contactsArr.length:(currentpage*postsPerPage))?{...contacts,selected:false}:contacts}))
+        }} 
             />
         </>
     )
