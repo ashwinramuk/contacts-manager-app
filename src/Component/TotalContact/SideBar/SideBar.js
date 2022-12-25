@@ -30,7 +30,7 @@ const SideBar = ()=>{
                     <div id='total-contact-icon-line'></div>
                 </div>
             </div>
-
+<div id='line-befoere-logout'></div>
             <div id='logout-button'>
                 <button onClick={()=>{localStorage.clear();navigate("/")}}>
                    <LogoutIcon/> <span id='logout-text'> Log out </span>                   
