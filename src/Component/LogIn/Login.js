@@ -80,11 +80,12 @@ const LogIn = () => {
     return (
         <>
             <div className="mainDiv">
-                <img className="EllipseLeft" src="../images/Ellipse-31.png" alt="Ellipse-31" />
+                
                 <div className="insideDiv">
+                    <img className="EllipseLeft" src="../images/Ellipse-31.png" alt="Ellipse-31" />
                     <img className="dotsRight" src="./images/Dots-Group.png" alt="Dots-Group" />
 
-                    <h1 className="logo" >Logo</h1>
+                    <div className="logo" >Logo</div>
                     <p className="para">Enter your credentials to access your account</p>
                     <form method="POST"  onSubmit={submitHandler}>
                         <input className="userId" type="text" name="email"  onChange={(event) => {setUserDetails({ ...userDetails, email: event.target.value })}} placeholder="Email Id"></input>
@@ -94,15 +95,16 @@ const LogIn = () => {
                         <input type="submit" className="signIn" value="Sign In" /><br />
                         {loader&&<div className="loader-div"><img src="./images/Loading_icon.gif" alt="Loading_icon"/></div>}
                     </form>
-                        <Link to="/register"><button className="signUp">Sign Up</button></Link>
-                    <center className="errorMessage">
+                    <Link to="/register"><button className="signUp">Sign Up</button></Link>
+                    <center className="errorMessage ">
                         {error.emailError && <h5>{error.emailError}</h5>|| error.passwordError && <h5>{error.passwordError}</h5> || <h5>{userNotReg.wrongPassword}</h5> || <h5>{userNotReg.newUser}</h5>}
                     </center>
                     
                     <img className="dotsLeft" src="./images/Dots-Group.png" alt="Dots-Group" />
 
+                    <img className="ellipse32" src="../images/Ellipse-32.png" />
                 </div>
-                <img className="ellipse32" src="../images/Ellipse-32.png" />
+              
             </div>
         </>
     )
