@@ -27,7 +27,7 @@
 .horizontal-line{
     position:absolute;
 
-    bottom:100px;
+    bottom:70px;
     color:#181818;
     width:100%;
 }
@@ -92,14 +92,14 @@
     width: 100px;
     height: 20px;
     left: 34%;
-    top: 90%;
+    top: 97%;
     background: #CEF3FF;
 
 }
 #logout-button{
     position: absolute;
     left: 16%;
-    top: 650px;
+    top: 680px;
 }
 #logout-button > button{
     background: #CEF3FF;
