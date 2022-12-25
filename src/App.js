@@ -22,9 +22,9 @@ function App() {
             <Route path='/register' element={<SignUp />} />
             <Route path='/dashBoard' 
             element={
-            <ProtectedRoute>
+            // <ProtectedRoute>
               <TotalContact/>
-              </ProtectedRoute>
+              // </ProtectedRoute>
             }/>          
             
           </Routes>
